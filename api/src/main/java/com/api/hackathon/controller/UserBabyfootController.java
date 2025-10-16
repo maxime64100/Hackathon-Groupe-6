@@ -49,15 +49,25 @@ public class UserBabyfootController {
     public ResponseEntity<UserBabyfoot> updateUser(@PathVariable Integer id, @RequestBody UserBabyfoot updatedUser) {
         return userRepository.findById(id)
                 .map(existingUser -> {
-                    existingUser.setName(updatedUser.getName());
-                    existingUser.setSurname(updatedUser.getSurname());
-                    existingUser.setMail(updatedUser.getMail());
-                    existingUser.setPasswordUser(updatedUser.getPasswordUser());
+                    if (updatedUser.getName() != null) {
+                        existingUser.setName(updatedUser.getName());
+                    }
+                    if (updatedUser.getSurname() != null) {
+                        existingUser.setSurname(updatedUser.getSurname());
+                    }
+                    if (updatedUser.getMail() != null) {
+                        existingUser.setMail(updatedUser.getMail());
+                    }
+                    if (updatedUser.getPasswordUser() != null) {
+                        existingUser.setPasswordUser(updatedUser.getPasswordUser());
+                    }
+
                     userRepository.save(existingUser);
                     return ResponseEntity.ok(existingUser);
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 
     // 🔹 DELETE - Supprimer un utilisateur
     @DeleteMapping("/{id}")
