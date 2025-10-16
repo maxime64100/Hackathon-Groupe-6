@@ -119,7 +119,7 @@
   "USER_PROFILE.TITLE": "Mon Profil",
   "USER_PROFILE.DESCRIPTION": "Gérez vos informations personnelles et vos préférences",
   "USER_PROFILE.INFORMATIONS": "Informations de base",
-  "USER_PROFILE.AVATAR": "Changer l’avatar",
+  "USER_PROFILE.AVATAR_URL": "Changer l’avatar",
   "USER_PROFILE.RESET": "Réinitialiser",
   "USER_PROFILE.FIRSTNAME": "Prénom",
   "USER_PROFILE.LASTNAME": "Nom",
@@ -131,5 +131,8 @@
   "USER_PROFILE.PASSWORD_CHANGES": "Changer le mot de passe (bientôt)",
   "USER_PROFILE.SENSITIVE_AREA": "Zone sensible",
   "USER_PROFILE.DELETE_ACCOUNT_MESSAGE": "Supprimer votre compte est irréversible.",
-  "USER_PROFILE.DELETE_ACCOUNT": "Supprimer mon compte (désactivé)"
+  "USER_PROFILE.DELETE_ACCOUNT": "Supprimer mon compte (désactivé)",
+  "USER_PROFILE.SAVING": "Enregistrement…",
+  "USER_PROFILE.SAVE": "Enregistrer"
+
 }

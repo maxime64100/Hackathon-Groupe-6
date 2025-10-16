@@ -60,6 +60,9 @@ public class UserBabyfootController {
                     if (updatedUser.getSurname() != null) {
                         existingUser.setSurname(updatedUser.getSurname());
                     }
+                    if (updatedUser.getProfileImageUrl() != null) {
+                        existingUser.setProfileImageUrl(updatedUser.getProfileImageUrl());
+                    }
                     // On ignore toute tentative de changement du mail ou du mot de passe
                     // -> rien à faire ici
                     userRepository.save(existingUser);
