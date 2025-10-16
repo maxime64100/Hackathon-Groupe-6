@@ -69,7 +69,7 @@
   "RESERVATION.CALM": "Calm",
 
 
-"DASHBOARD.TITLE": "Administrator Dashboard",
+  "DASHBOARD.TITLE": "Administrator Dashboard",
   "DASHBOARD.SUBTITLE": "Manage foosball tables, users, and monitor activity",
 
   "DASHBOARD.KPI_BABYFOOTS_ACTIVE": "Active Foosball Tables",
@@ -112,5 +112,22 @@
   "DASHBOARD.SYSTEM_TITLE": "System Status",
   "DASHBOARD.SYSTEM_OPERATIONAL": "Operational",
   "DASHBOARD.SYSTEM_PARTIAL": "Partial",
-  "DASHBOARD.SYSTEM_INCIDENT": "Incident"
+  "DASHBOARD.SYSTEM_INCIDENT": "Incident",
+
+  "USER_PROFILE.TITLE": "My Profile",
+  "USER_PROFILE.DESCRIPTION": "Manage your personal information and preferences",
+  "USER_PROFILE.INFORMATIONS": "Basic Information",
+  "USER_PROFILE.AVATAR": "Change Avatar",
+  "USER_PROFILE.RESET": "Reset",
+  "USER_PROFILE.FIRSTNAME": "First Name",
+  "USER_PROFILE.LASTNAME": "Last Name",
+  "USER_PROFILE.CANCEL": "Cancel",
+  "USER_PROFILE.ACCOUNT": "Account",
+  "USER_PROFILE.EMAIL": "Email",
+  "USER_PROFILE.TEMPORARY_MODIFICATION_EMAIL": "Email modification will be handled later.",
+  "USER_PROFILE.PASSWORD": "Password",
+  "USER_PROFILE.PASSWORD_CHANGES": "Change password (coming soon)",
+  "USER_PROFILE.SENSITIVE_AREA": "Sensitive Area",
+  "USER_PROFILE.DELETE_ACCOUNT_MESSAGE": "Deleting your account is irreversible.",
+  "USER_PROFILE.DELETE_ACCOUNT": "Delete my account (disabled)"
 }
