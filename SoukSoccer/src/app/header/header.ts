@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
-import {TranslateDirective, TranslatePipe, TranslateService} from '@ngx-translate/core';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
