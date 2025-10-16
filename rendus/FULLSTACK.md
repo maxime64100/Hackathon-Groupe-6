@@ -2,9 +2,9 @@
 
 ## Equipe
 
-- Dev' FullStack 1 : NOM Prénom
-- Dev' FullStack 2 : NOM Prénom
-- Dev' FullStack 3 : NOM Prénom
+- Dev' FullStack 1 : FALLEK Maxime
+- Dev' FullStack 2 : MOREL Oskar
+- Dev' FullStack 3 : QUERON Raphaël
 
 Et si on réinventait l’expérience babyfoot à Ynov ? L’objectif de ce hackathon est de moderniser et digitaliser l’usage des babyfoots présents dans le Souk pour créer un service _next-gen_, pensé pour près de 1000 étudiants !
 
