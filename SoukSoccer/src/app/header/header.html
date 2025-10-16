@@ -45,7 +45,7 @@
         </div>
       } @else {
         <div class="d-flex align-items-center gap-2 ms-3">
-          <a href="" class="btn btn-light btn-sm">
+          <a href="/user-profile" class="btn btn-light btn-sm">
             <img
               [src]="userInfo?.profileImageUrl || 'assets/images/default-avatar.jpg'"
               alt="Photo de profil"
@@ -113,7 +113,7 @@
             </div>
           } @else {
             <div class="d-flex justify-content-center gap-2 w-100">
-              <a href="" class="btn btn-light btn-sm flex-fill">
+              <a href="/user-profile" class="btn btn-light btn-sm flex-fill">
                 {{ userInfo?.surname }} {{ userInfo?.name }}
               </a>
               <button class="btn btn-outline-danger btn-sm flex-fill" (click)="logout()">{{ 'NAV.DECO' | translate }}</button>
