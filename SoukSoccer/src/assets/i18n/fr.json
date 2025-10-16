@@ -1,0 +1,18 @@
+{
+  "NAV.BUTTON.CHANGE_LANG": "Langue : ",
+  "NAV.HOME": "Accueil",
+  "NAV.RESERVATION": "Réservation",
+  "NAV.TOURNAMENTS": "Tournois",
+  "NAV.STATS": "Statistiques",
+  "NAV.LOGIN": "Connexion",
+  "NAV.SIGNUP": "S'inscrire",
+
+  "ARIA.LABEL.HOME": "Aller à l'accueil du site",
+  "ARIA.LABEL.RESERVATION": "Aller à la page de réservation",
+  "ARIA.LABEL.TOURNAMENTS": "Aller à la page des tournois",
+  "ARIA.LABEL.STATS": "Aller à la page des statistiques",
+  "ARIA.LABEL.LOGIN": "Se connecter",
+  "ARIA.LABEL.SIGNUP": "Créer un compte",
+  "ARIA.LABEL.BURGER_MENU": "Ouvrir le menu de navigation",
+  "ARIA.LABEL.CANGE_LANG": "Changer la langue du site"
+}

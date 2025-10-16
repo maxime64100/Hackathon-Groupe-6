@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" href="#">SoukSoccer</a>
+
+    <!-- Bouton burger (mobile) -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="{{ 'ARIA.LABEL.BURGER_MENU' | translate }}"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Contenu de la navbar -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item me-4">
+          <a class="nav-link" aria-label="{{ 'ARIA.LABEL.HOME' | translate }}">{{ 'NAV.HOME' | translate }}</a>
+        </li>
+        <li class="nav-item me-4">
+          <a class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
+        </li>
+        <li class="nav-item me-4">
+          <a class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
+        </li>
+      </ul>
+
+      <!-- Sélecteur de langue -->
+      <div class="me-2 mb-md-0 mb-sm-4">
+        <button (click)="toggleLanguage()" class="btn btn-success btn-sm" aria-label="{{ 'ARIA.LABEL.CANGE_LANG' | translate }}">
+          {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
+        </button>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <a class="header-btn btn btn-light btn-sm text-primary me-2" aria-label="{{ 'ARIA.LABEL.LOGIN' | translate }}">{{ 'NAV.LOGIN' | translate }}</a>
+        <a class="header-btn btn btn-primary btn-sm" aria-label="{{ 'ARIA.LABEL.SIGNUP' | translate }}">{{ 'NAV.SIGNUP' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</nav>
