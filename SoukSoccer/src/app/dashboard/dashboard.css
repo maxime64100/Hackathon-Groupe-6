@@ -1,0 +1,27 @@
+/* Élégantes ombres */
+.card-elev { box-shadow: 0 8px 24px rgba(17,24,39,.06); }
+
+/* KPI cards */
+.kpi-card .kpi-icon{
+  width: 46px; height: 46px;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+}
+
+/* Lignes d'items */
+.table-row:hover,
+.user-row:hover { transform: translateY(-1px); transition: transform .12s ease; }
+
+/* Pastille statut système */
+.dot{ width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+/* Search */
+.searchbox input{ min-width: 200px; }
+.searchbox i{ color:#9aa3af; }
+
+/* Badges "subtle" fallback (si thème Bootstrap < 5.3) */
+.bg-primary-subtle   { background:#e7f0ff !important; color:#0d6efd !important; }
+.bg-success-subtle   { background:#e9f9ef !important; color:#198754 !important; }
+.bg-warning-subtle   { background:#fff6e1 !important; color:#d99000 !important; }
+.bg-danger-subtle    { background:#ffe8e8 !important; color:#dc3545 !important; }
+.bg-secondary-subtle { background:#f0f2f5 !important; color:#6c757d !important; }
