@@ -112,6 +112,22 @@
   "DASHBOARD.SYSTEM_TITLE": "État du Système",
   "DASHBOARD.SYSTEM_OPERATIONAL": "Opérationnel",
   "DASHBOARD.SYSTEM_PARTIAL": "Partiel",
-  "DASHBOARD.SYSTEM_INCIDENT": "Incident"
+  "DASHBOARD.SYSTEM_INCIDENT": "Incident",
 
+  "USER_PROFILE.TITLE": "Mon Profil",
+  "USER_PROFILE.DESCRIPTION": "Gérez vos informations personnelles et vos préférences",
+  "USER_PROFILE.INFORMATIONS": "Informations de base",
+  "USER_PROFILE.AVATAR": "Changer l’avatar",
+  "USER_PROFILE.RESET": "Réinitialiser",
+  "USER_PROFILE.FIRSTNAME": "Prénom",
+  "USER_PROFILE.LASTNAME": "Nom",
+  "USER_PROFILE.CANCEL": "Annuler",
+  "USER_PROFILE.ACCOUNT": "Compte",
+  "USER_PROFILE.EMAIL": "Email",
+  "USER_PROFILE.TEMPORARY_MODIFICATION_EMAIL": "La modification de l’email sera gérée ultérieurement.",
+  "USER_PROFILE.PASSWORD": "Mot de passe",
+  "USER_PROFILE.PASSWORD_CHANGES": "Changer le mot de passe (bientôt)",
+  "USER_PROFILE.SENSITIVE_AREA": "Zone sensible",
+  "USER_PROFILE.DELETE_ACCOUNT_MESSAGE": "Supprimer votre compte est irréversible.",
+  "USER_PROFILE.DELETE_ACCOUNT": "Supprimer mon compte (désactivé)"
 }
