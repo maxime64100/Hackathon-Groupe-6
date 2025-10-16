@@ -1,0 +1,80 @@
+/* Fond doux des sections */
+.bg-page-light { background: #f7f8fb; }
+.bg-section    { background: #f4f6fa; }
+
+/* Hero gradient */
+.hero-gradient{
+  background: linear-gradient(24deg,rgba(45, 207, 126, 1) 30%, rgba(90, 31, 255, 1) 100%);
+  background-blend-mode: overlay, normal;
+}
+.hero-cta{ border-top-left-radius: 24px; border-top-right-radius: 24px; }
+.hero-sub{ max-width: 680px; }
+
+.btn-start-now {
+  transition: transform 0.2s ease;
+}
+
+.btn-start-now:hover {
+  transform: scale(1.05);
+}
+
+/* Ombres douces */
+.card-elev{ box-shadow: 0 12px 32px rgba(17,24,39,.08); }
+
+/* Stat cards */
+.stat-card{
+  box-shadow: 0 8px 20px rgba(17,24,39,.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.01);
+  box-shadow: -1px 1px 30px -12px #1d4ed8;
+}
+
+
+.stat-card{
+  box-shadow: 0 8px 20px rgba(17,24,39,.05);
+}
+
+.icon-wrap{
+  width: 40px; height: 40px; border-radius: 12px;
+  background: #f1f5ff; color: #1d4ed8;
+  display: grid; place-items: center;
+  font-size: 1.1rem;
+}
+
+/* Feature cards */
+.feature-card{
+  box-shadow: 0 8px 20px rgba(17,24,39,.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.01);
+  box-shadow: -1px 1px 30px -12px #10b981;
+}
+
+.feature-icon{
+  width: 36px; height: 36px; border-radius: 10px;
+  background: #ecfdf5; color:#10b981;
+  display: grid; place-items: center;
+  margin-bottom: .6rem;
+}
+
+/* Live rows */
+.dot{ width: 10px; height: 10px; border-radius: 50%; display:inline-block; }
+.rank{
+  width: 28px; height: 28px; border-radius: 8px;
+  background: #f3f4f6; display: grid; place-items: center; font-weight: 700;
+}
+.live-row:hover{ transform: translateY(-1px); transition: transform .12s ease; }
+
+/* Hero paddings */
+.py-lg-6{ padding-top: 5rem; padding-bottom: 5rem; }
+
+/* Responsive tweaks */
+@media (max-width: 576px){
+  .display-5{ font-size: 2rem; }
+  .hero-sub{ font-size: .95rem; }
+}
