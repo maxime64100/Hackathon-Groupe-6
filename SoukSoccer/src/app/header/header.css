@@ -1,0 +1,22 @@
+.header-btn {
+  transition: background-color 0.2s ease!important;
+}
+
+.btn-group .btn {
+  transition: all 0.2s ease;
+  font-weight: 500;
+  min-width: 48px;
+}
+
+.btn-group .btn-light:hover {
+  background-color: #e9ecef;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--bs-primary);
+}
