@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {TranslatePipe} from "@ngx-translate/core";
 
 type Role = 'user' | 'admin';
 
@@ -58,7 +59,7 @@ interface Player {
 @Component({
   selector: 'app-reservation',
   standalone: true,
-  imports: [CommonModule],
+    imports: [CommonModule, TranslatePipe],
   templateUrl: './reservation.html',
   styleUrls: ['./reservation.css']
 })

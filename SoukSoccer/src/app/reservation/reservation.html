@@ -1,200 +1,200 @@
 <div class="container-fluid py-4 bg-page">
-  <div class="px-5">
-    <h1 class="fw-bold mb-1">Réservations</h1>
-    <p class="text-muted mb-0">Réservez votre créneau de jeu en quelques clics</p>
-  </div>
-
-  <div class="row g-3 mt-1 px-5">
-    <div class="col-lg-8">
-      <div class="card card-elev rounded-4 border-0">
-        <div class="card-body p-4">
-          <h2 class="h5 fw-bold mb-3">Nouvelle Réservation</h2>
-
-          <!-- Choisir une date -->
-          <div class="mb-4">
-            <div class="text-uppercase small text-muted mb-2">Choisir une date</div>
-            <div class="row g-2">
-              <div class="col-6 col-md-12">
-                <div class="days-grid">
-                  @for (d of days(); track d.dayNum) {
-                    <button
-                      class="btn day-btn"
-                      [class.selected]="d.isSelected"
-                      (click)="selectDay(d)">
-                      <span class="d-block small text-muted">{{ d.label }}</span>
-                      <span class="d-block fw-bold mt-1">{{ d.dayNum }}</span>
-                    </button>
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Créneaux disponibles -->
-          <div class="mb-4">
-            <div class="text-uppercase small text-muted mb-2">Créneaux disponibles</div>
-            <div class="slots-grid">
-              @for (s of timeSlots(); track s.label) {
-                <button
-                  class="slot-card"
-                  [class.selected]="selectedSlot()?.label === s.label"
-                  [class.disabled]="s.disabled"
-                  (click)="selectSlot(s)">
-                  <span class="d-block fw-bold">{{ s.label }}</span>
-                  <span class="d-block small text-muted">{{ s.durationMin }}min</span>
-                  @if (s.occupied) {
-                    <span class="slot-occup small text-muted">Occupé</span>
-                  }
-                </button>
-              }
-            </div>
-          </div>
-
-          <!-- Choisir un babyfoot -->
-          <div class="mb-4">
-            <div class="text-uppercase small text-muted mb-2">Choisir un babyfoot</div>
-
-            <div class="vstack gap-2">
-              @for (t of tables(); track t.id) {
-                <button
-                  class="btn card-select text-start w-100 rounded-4 border position-relative"
-                  [class.active]="selectedTable()?.id === t.id"
-                  [class.disabled]="t.disabled"
-                  (click)="selectTable(t)">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="fw-semibold">{{ t.name }}</div>
-                    <span class="status-dot"
-                          [class.bg-success]="t.status.color === 'green'"
-                          [class.bg-danger]="t.status.color === 'red'"
-                          [class.bg-secondary]="t.status.color === 'gray'"></span>
-                  </div>
-                  <div class="text-muted small mt-1">{{ t.zone }}</div>
-                </button>
-              }
-            </div>
-          </div>
-
-          <!-- Inviter des joueurs -->
-          <div class="mb-4">
-            <div class="text-uppercase small text-muted mb-2">Inviter des joueurs</div>
-
-            <div class="d-flex flex-wrap align-items-center gap-2">
-              @for (p of players(); track p.id) {
-                <div class="chip d-inline-flex align-items-center gap-2">
-                  <img [src]="p.avatarUrl" [alt]="p.name" class="rounded-circle" width="28" height="28">
-                  <span class="small">{{ p.name }}</span>
-                  @if (p.name !== 'Vous') {
-                    <button
-                      class="btn btn-sm btn-light-subtle border ms-1 px-2 py-0 rounded-pill"
-                      title="Retirer"
-                      (click)="removePlayer(p)">
-                      <i class="bi bi-x"></i>
-                    </button>
-                  }
-                </div>
-              }
-
-              @if (canAddMore()) {
-                <button
-                  class="btn btn-outline-secondary rounded-circle d-inline-flex align-items-center justify-content-center add-player"
-                  (click)="addPlayer()">
-                  <i class="bi bi-plus-lg"></i>
-                </button>
-              }
-
-              <span class="text-muted small ms-1">Maximum {{ maxPlayers }} joueurs par partie</span>
-            </div>
-          </div>
-
-          <!-- CTA -->
-          <div>
-            <button class="btn btn-primary btn-lg w-100 rounded-4 fw-semibold"
-                    (click)="confirmReservation()">
-              <i class="bi bi-check2-circle me-2"></i>
-              Confirmer la réservation
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="container-xxl px-3 px-lg-5">
+        <h1 class="fw-bold mb-1">{{ 'RESERVATION.TITLE' | translate }}</h1>
+        <p class="text-muted mb-0">{{ 'RESERVATION.SUBTITLE' | translate }}</p>
     </div>
 
-    <!-- Sidebar -->
-    <div class="col-lg-4">
-      <!-- Statistiques Rapides -->
-      <div class="card card-elev rounded-4 border-0 mb-3">
-        <div class="card-body p-4">
-          <h3 class="h6 fw-bold mb-3">Statistiques Rapides</h3>
+    <div class="container-xxl mt-1 px-3 px-lg-5">
+        <div class="row g-3">
+            <div class="col-lg-8">
+                <div class="card card-elev rounded-4 border-0">
+                    <div class="card-body p-3 p-md-4">
+                        <h2 class="h5 fw-bold mb-3">{{ 'RESERVATION.NEW' | translate }}</h2>
 
-          <div class="vstack gap-2">
-            <div class="d-flex justify-content-between align-items-center stat-block rounded-4 border p-3">
-              <div class="small text-muted">Babyfoots disponibles</div>
-              <div class="fw-bold text-success">{{ quickStats().available }}/{{ quickStats().total }}</div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center stat-block rounded-4 border p-3">
-              <div class="small text-muted">Temps d'attente moyen</div>
-              <div class="fw-bold text-primary">{{ quickStats().avgWaitMin }} min</div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center stat-block rounded-4 border p-3">
-              <div class="small text-muted">Parties aujourd'hui</div>
-              <div class="fw-bold">{{ quickStats().gamesToday }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
+                        <div class="mb-4">
+                            <div class="text-uppercase small text-muted mb-2">{{ 'RESERVATION.CHOOSE_DATE' | translate }}</div>
 
-      <!-- Mes Réservations -->
-      <div class="card card-elev rounded-4 border-0 mb-3">
-        <div class="card-body p-4">
-          <h3 class="h6 fw-bold mb-3">Mes Réservations</h3>
+                            <div class="h-scroll-md">
+                                <div class="days-row">
+                                    @for (d of days(); track d.dayNum) {
+                                        <button
+                                                class="btn day-btn"
+                                                [class.selected]="d.isSelected"
+                                                (click)="selectDay(d)">
+                                            <span class="d-block small text-muted">{{ d.label }}</span>
+                                            <span class="d-block fw-bold mt-1">{{ d.dayNum }}</span>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
 
-          <div class="vstack gap-2">
-            @for (r of myReservations(); track r.time) {
-              <div class="border rounded-4 p-3 bg-white">
-                <div class="d-flex">
-                  <div class="small text-muted me-auto">{{ r.when }}</div>
-                  <span class="badge rounded-pill"
-                        [class.bg-primary-subtle]="r.status === 'Actif'"
-                        [class.text-primary]="r.status === 'Actif'"
-                        [class.bg-secondary-subtle]="r.status === 'Planifié'">
-                    {{ r.status }}
-                  </span>
+                        <div class="mb-4">
+                            <div class="text-uppercase small text-muted mb-2">{{ 'RESERVATION.AVAILABLE_SLOTS' | translate }}</div>
+
+                            <div class="h-scroll-md">
+                                <div class="slots-row">
+                                    @for (s of timeSlots(); track s.label) {
+                                        <button
+                                                class="slot-card"
+                                                [class.selected]="selectedSlot()?.label === s.label"
+                                                [class.disabled]="s.disabled"
+                                                (click)="selectSlot(s)">
+                                            <span class="d-block fw-bold">{{ s.label }}</span>
+                                            <span class="d-block small text-muted">{{ s.durationMin }}min</span>
+                                            @if (s.occupied) {
+                                                <span class="slot-occup small text-muted">{{ 'RESERVATION.OCCUPIED' | translate }}</span>
+                                            }
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-uppercase small text-muted mb-2">{{ 'RESERVATION.CHOOSE_TABLE' | translate }}</div>
+
+                            <div class="vstack gap-2">
+                                @for (t of tables(); track t.id) {
+                                    <button
+                                            class="btn card-select text-start w-100 rounded-4 border position-relative"
+                                            [class.active]="selectedTable()?.id === t.id"
+                                            [class.disabled]="t.disabled"
+                                            (click)="selectTable(t)">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="fw-semibold">{{ t.name }}</div>
+                                            <span class="status-dot"
+                                                  [class.bg-success]="t.status.color === 'green'"
+                                                  [class.bg-danger]="t.status.color === 'red'"
+                                                  [class.bg-secondary]="t.status.color === 'gray'"></span>
+                                        </div>
+                                        <div class="text-muted small mt-1">{{ t.zone }}</div>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-uppercase small text-muted mb-2">{{ 'RESERVATION.INVITE_PLAYERS' | translate }}</div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                @for (p of players(); track p.id) {
+                                    <div class="chip d-inline-flex align-items-center gap-2">
+                                        <img [src]="p.avatarUrl" [alt]="p.name" class="rounded-circle" width="28" height="28">
+                                        <span class="small">{{ p.name }}</span>
+                                        @if (p.name !== 'Vous') {
+                                            <button
+                                                    class="btn btn-sm btn-light-subtle border ms-1 px-2 py-0 rounded-pill"
+                                                    [attr.title]="'RESERVATION.REMOVE_PLAYER' | translate"
+                                                    (click)="removePlayer(p)">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        }
+                                    </div>
+                                }
+
+                                @if (canAddMore()) {
+                                    <button
+                                            class="btn btn-outline-secondary rounded-circle d-inline-flex align-items-center justify-content-center add-player"
+                                            (click)="addPlayer()">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                }
+
+                                <span class="text-muted small ms-1">
+                  {{ 'RESERVATION.MAX_PLAYERS' | translate }} {{ maxPlayers }}
+                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button class="btn btn-primary btn-lg w-100 rounded-4 fw-semibold"
+                                    (click)="confirmReservation()">
+                                <i class="bi bi-check2-circle me-2"></i>
+                                {{ 'RESERVATION.CONFIRM' | translate }}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="fw-semibold mt-1">{{ r.tableName }} - {{ r.time }}</div>
-              </div>
-            }
-          </div>
+            </div>
 
-          <a href="#" class="d-block text-center mt-3 text-primary text-decoration-none"
-             (click)="$event.preventDefault()">Voir toutes mes réservations</a>
-        </div>
-      </div>
+            <div class="col-lg-4">
+                <div class="card card-elev rounded-4 border-0 mb-3">
+                    <div class="card-body p-3 p-md-4">
+                        <h3 class="h6 fw-bold mb-3">{{ 'RESERVATION.QUICK_STATS' | translate }}</h3>
 
-      <!-- Heures Populaires -->
-      <div class="card card-elev rounded-4 border-0">
-        <div class="card-body p-4">
-          <h3 class="h6 fw-bold mb-3">Heures Populaires</h3>
-
-          <div class="vstack gap-2">
-            @for (h of popularHours(); track h.range) {
-              <div class="d-flex justify-content-between align-items-center border rounded-4 p-3 bg-white">
-                <div class="fw-semibold">{{ h.range }}</div>
-                <div class="d-flex align-items-center gap-2 text-muted small">
-                  <span class="legend-dot"
-                        [class.bg-danger]="h.level==='high'"
-                        [class.bg-warning]="h.level==='medium'"
-                        [class.bg-success]="h.level==='low'"></span>
-                  @switch (h.level) {
-                    @case ('high') { <span>Très occupé</span> }
-                    @case ('medium') { <span>Modéré</span> }
-                    @case ('low') { <span>Calme</span> }
-                  }
+                        <div class="vstack gap-2">
+                            <div class="d-flex justify-content-between align-items-center stat-block rounded-4 border p-3">
+                                <div class="small text-muted">{{ 'RESERVATION.STATS_AVAILABLE' | translate }}</div>
+                                <div class="fw-bold text-success">{{ quickStats().available }}/{{ quickStats().total }}</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center stat-block rounded-4 border p-3">
+                                <div class="small text-muted">{{ 'RESERVATION.STATS_WAIT' | translate }}</div>
+                                <div class="fw-bold text-primary">{{ quickStats().avgWaitMin }} min</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center stat-block rounded-4 border p-3">
+                                <div class="small text-muted">{{ 'RESERVATION.STATS_TODAY' | translate }}</div>
+                                <div class="fw-bold">{{ quickStats().gamesToday }}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            }
-          </div>
 
+                <div class="card card-elev rounded-4 border-0 mb-3">
+                    <div class="card-body p-3 p-md-4">
+                        <h3 class="h6 fw-bold mb-3">{{ 'RESERVATION.MY_RESERVATIONS' | translate }}</h3>
+
+                        <div class="vstack gap-2">
+                            @for (r of myReservations(); track r.time) {
+                                <div class="border rounded-4 p-3 bg-white">
+                                    <div class="d-flex">
+                                        <div class="small text-muted me-auto">{{ r.when }}</div>
+                                        <span class="badge rounded-pill"
+                                              [class.bg-primary-subtle]="r.status === 'Actif'"
+                                              [class.text-primary]="r.status === 'Actif'"
+                                              [class.bg-secondary-subtle]="r.status === 'Planifié'">
+                      {{ r.status }}
+                    </span>
+                                    </div>
+                                    <div class="fw-semibold mt-1">{{ r.tableName }} - {{ r.time }}</div>
+                                </div>
+                            }
+                        </div>
+
+                        <a href="#"
+                           class="d-block text-center mt-3 text-primary text-decoration-none"
+                           (click)="$event.preventDefault()">
+                            {{ 'RESERVATION.SEE_ALL' | translate }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card card-elev rounded-4 border-0">
+                    <div class="card-body p-3 p-md-4">
+                        <h3 class="h6 fw-bold mb-3">{{ 'RESERVATION.POPULAR_HOURS' | translate }}</h3>
+
+                        <div class="vstack gap-2">
+                            @for (h of popularHours(); track h.range) {
+                                <div class="d-flex justify-content-between align-items-center border rounded-4 p-3 bg-white">
+                                    <div class="fw-semibold">{{ h.range }}</div>
+                                    <div class="d-flex align-items-center gap-2 text-muted small">
+                    <span class="legend-dot"
+                          [class.bg-danger]="h.level==='high'"
+                          [class.bg-warning]="h.level==='medium'"
+                          [class.bg-success]="h.level==='low'"></span>
+                                        @switch (h.level) {
+                                            @case ('high') { <span>{{ 'RESERVATION.BUSY' | translate }}</span> }
+                                            @case ('medium') { <span>{{ 'RESERVATION.MEDIUM' | translate }}</span> }
+                                            @case ('low') { <span>{{ 'RESERVATION.CALM' | translate }}</span> }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
