@@ -2,18 +2,15 @@ package com.api.hackathon.controller;
 
 import com.api.hackathon.model.UserBabyfoot;
 import com.api.hackathon.repository.UserBabyfootRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @SecurityRequirement(name = "BearerAuth")
@@ -83,7 +80,8 @@ public class UserBabyfootController {
                     if (updatedUser.getSurname() != null) {
                         existingUser.setSurname(updatedUser.getSurname());
                     }
-                    if (updatedUser.getProfileImageUrl() != null) {
+                    if (updatedUser
+                            .getProfileImageUrl() != null) {
                         existingUser.setProfileImageUrl(updatedUser.getProfileImageUrl());
                     }
                     // On ignore toute tentative de changement du mail ou du mot de passe

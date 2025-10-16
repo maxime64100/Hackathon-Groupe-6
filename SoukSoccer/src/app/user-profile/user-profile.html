@@ -24,7 +24,9 @@
                            class="form-control"
                            placeholder="https://exemple.com/mon-avatar.jpg"
                            [value]="avatarUrl()"
-                           (input)="onAvatarUrlChange($event)">
+                           (input)="onAvatarUrlChange($event)"
+                           referrerpolicy="no-referrer"
+                    >
                   </div>
                   <button type="button" class="btn btn-outline-secondary rounded-3" (click)="resetAvatar()">
                     <i class="bi bi-arrow-counterclockwise me-1"></i> {{ 'USER_PROFILE.RESET' | translate }}

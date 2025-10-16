@@ -32,4 +32,7 @@ public class UserBabyfoot {
 
     @Schema(description = "Rôle en jeu (optionnel)", example = "attaquant")
     private String roleGame;
+
+    @Schema(description = "Photo de profil de l'utilisateur", example = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FDeftones_%2528album%2529&psig=AOvVaw062ltu-wuYjcYT67ir-llJ&ust=1760740443784000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMi8orfjqZADFQAAAAAdAAAAABAE")
+    private String profileImageUrl;
 }
