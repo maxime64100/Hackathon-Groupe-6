@@ -28,9 +28,9 @@ public class DataInitializer {
             userRepo.deleteAll();
 
             // USERS
-            UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123");
-            UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123");
-            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", "admin123");
+            UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123", null);
+            UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123", null);
+            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", "admin123", null);
             userRepo.saveAll(List.of(alice, bob, admin));
 
             // BABYFOOTS
