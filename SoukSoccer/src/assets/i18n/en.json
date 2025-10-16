@@ -4,9 +4,6 @@
   "NAV.RESERVATION": "Reservation",
   "NAV.DASHBOARD": "Dashboard",
   "NAV.TOURNAMENTS": "Tournaments",
-  "NAV.STATS": "Statistics",
-  "NAV.LOGIN": "Login",
-  "NAV.SIGNUP": "Sign Up",
   "ARIA.LABEL.HOME": "Go to the homepage",
   "ARIA.LABEL.RESERVATION": "Go to the reservation page",
   "ARIA.LABEL.TOURNAMENTS": "Go to the tournaments page",
@@ -44,7 +41,7 @@
   "HOME.PLAYER.TITLE": "Top Players",
   "HOME.PLAYER.VICTORY": "victories",
   "HOME.HERO_FOOTER.TITLE": "Ready to Revolutionize Your Babyfoot Experience?",
-  "HOME.HERO_FOOTER.DESC": "Join the FutureFootball community of Ynov Toulouse today"
+  "HOME.HERO_FOOTER.DESC": "Join the FutureFootball community of Ynov Toulouse today",
   "NAV.STATS": "Stats",
   "NAV.LOGIN": "Log in",
   "NAV.SIGNUP": "Sign Up",
