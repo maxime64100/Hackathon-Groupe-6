@@ -1,0 +1,21 @@
+/* Fond et ombres */
+.bg-page { background: #f4f5f8; }
+.card-elev { box-shadow: 0 8px 24px rgba(17,24,39,.06); }
+
+/* Avatar */
+.avatar{
+  width: 84px; height: 84px; border-radius: 50%;
+  object-fit: cover; border: 3px solid #fff;
+}
+
+/* Responsive paddings */
+@media (max-width: 768px){
+  .card .card-body { padding: 1rem !important; }
+}
+
+/* Inputs */
+.is-invalid { border-color: #dc3545 !important; }
+.invalid-feedback { display:block; }
+
+/* Petites améliorations */
+.form-text { font-size: .8rem; }
