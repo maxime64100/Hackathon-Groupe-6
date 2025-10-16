@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface UserBabyfootRepository extends JpaRepository<UserBabyfoot, Integer> {
     Optional<UserBabyfoot> findByMail(String mail);
+    boolean existsByMail(String mail);
 }
