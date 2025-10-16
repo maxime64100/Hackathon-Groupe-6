@@ -23,8 +23,6 @@
         <openapi.generator.version>7.6.0</openapi.generator.version>
     </properties>
 
-
-
     <dependencies>
 
         <!-- SPRING BOOT BASE -->
@@ -112,7 +110,6 @@
         </dependency>
 
     </dependencies>
-
     <build>
         <plugins>
 
@@ -125,5 +122,4 @@
 
         </plugins>
     </build>
-
 </project>
