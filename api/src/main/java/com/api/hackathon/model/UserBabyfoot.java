@@ -1,5 +1,6 @@
 package com.api.hackathon.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,4 +18,6 @@ public class UserBabyfoot {
     private String surname;
     private String mail;
     private String passwordUser;
+    @Nullable
+    private String profileImageUrl;
 }

@@ -20,8 +20,6 @@ public class DataInitializer {
             RepairsRepository repairsRepo
     ) {
         return args -> {
-            System.out.println("Réinitialisation des données de test...");
-
             // On supprime les anciennes données sans dropper les tables
             bookingRepo.deleteAll();
             tournamentRepo.deleteAll();

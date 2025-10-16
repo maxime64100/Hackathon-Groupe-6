@@ -114,6 +114,7 @@
   "DASHBOARD.SYSTEM_PARTIAL": "Partial",
   "DASHBOARD.SYSTEM_INCIDENT": "Incident",
 
+  "NAV.DECO": "Log out"
   "USER_PROFILE.TITLE": "My Profile",
   "USER_PROFILE.DESCRIPTION": "Manage your personal information and preferences",
   "USER_PROFILE.INFORMATIONS": "Basic Information",

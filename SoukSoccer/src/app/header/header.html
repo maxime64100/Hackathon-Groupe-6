@@ -1,107 +1,126 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm header-height sticky-md-top">
-    <div class="container-fluid">
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold" href="#">SoukSoccer</a>
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" href="#">SoukSoccer</a>
 
-        <!-- Bouton burger (mobile uniquement) -->
-        <button
-                class="navbar-toggler border-0 d-lg-none"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar"
-                aria-label="{{ 'ARIA.LABEL.BURGER_MENU' | translate }}"
-        >
-            <span class="navbar-toggler-icon"></span>
+    <!-- Bouton burger (mobile uniquement) -->
+    <button
+      class="navbar-toggler border-0 d-lg-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-label="{{ 'ARIA.LABEL.BURGER_MENU' | translate }}"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 🌐 NAVBAR DESKTOP -->
+    <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item me-4">
+          <a href="/" class="nav-link" aria-label="{{ 'ARIA.LABEL.HOME' | translate }}">{{ 'NAV.HOME' | translate }}</a>
+        </li>
+        <li class="nav-item me-4">
+          <a href="/reservation" class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
+        </li>
+        <li class="nav-item me-4">
+          <a class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
+        </li>
+      </ul>
+
+      <div class="me-2">
+        <button (click)="toggleLanguage()" class="btn btn-success btn-sm">
+          {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
         </button>
+      </div>
 
-        <!-- 🌐 NAVBAR DESKTOP -->
-        <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                <li class="nav-item me-4">
-                    <a href="/" class="nav-link" aria-label="{{ 'ARIA.LABEL.HOME' | translate }}">{{ 'NAV.HOME' | translate }}</a>
-                </li>
-                <li class="nav-item me-4">
-                    <a href="/reservation" class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
-                </li>
-                <li class="nav-item me-4">
-                    <a class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/dashboard" class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
-                </li>
-            </ul>
-
-            <div class="me-2">
-                <button (click)="toggleLanguage()" class="btn btn-success btn-sm">
-                    {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
-                </button>
-            </div>
-
-            <div class="d-flex align-items-center">
-                <a class="btn btn-light btn-sm text-primary me-2">{{ 'NAV.LOGIN' | translate }}</a>
-                <a class="btn btn-primary btn-sm">{{ 'NAV.SIGNUP' | translate }}</a>
-            </div>
+      @if (!isAuthenticated) {
+        <div class="d-flex align-items-center">
+          <a href="/login" class="btn btn-light btn-sm text-primary me-2">{{ 'NAV.LOGIN' | translate }}</a>
+          <a href="/register" class="btn btn-primary btn-sm">{{ 'NAV.SIGNUP' | translate }}</a>
         </div>
-
-        <!-- 📱 OFFCANVAS MOBILE -->
-        <div
-                class="offcanvas offcanvas-end d-lg-none"
-                tabindex="-1"
-                id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel"
-        >
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">SoukSoccer</h5>
-                <button
-                        type="button"
-                        class="btn-close text-reset"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                ></button>
-            </div>
-
-            <div class="offcanvas-body d-flex flex-column justify-content-between">
-                <!-- Liens -->
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item mb-2">
-                        <a class="nav-link" aria-label="{{ 'ARIA.LABEL.HOME' | translate }}">{{ 'NAV.HOME' | translate }}</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
-                    </li>
-                    <li class="nav-item mb-3">
-                        <a class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
-                    </li>
-                </ul>
-
-                <!-- Bas du menu -->
-                <div class="d-flex flex-column gap-2 align-items-center">
-                    <button
-                            (click)="toggleLanguage()"
-                            class="btn btn-success btn-sm w-100"
-                            aria-label="{{ 'ARIA.LABEL.CANGE_LANG' | translate }}"
-                    >
-                        {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
-                    </button>
-
-                    <div class="d-flex justify-content-center gap-2 w-100">
-                        <a
-                                class="btn btn-light btn-sm text-primary flex-fill"
-                                aria-label="{{ 'ARIA.LABEL.LOGIN' | translate }}"
-                        >{{ 'NAV.LOGIN' | translate }}</a
-                        >
-                        <a
-                                class="btn btn-primary btn-sm flex-fill"
-                                aria-label="{{ 'ARIA.LABEL.SIGNUP' | translate }}"
-                        >{{ 'NAV.SIGNUP' | translate }}</a
-                        >
-                    </div>
-                </div>
-            </div>
+      } @else {
+        <div class="d-flex align-items-center gap-2 ms-3">
+          <a href="" class="btn btn-light btn-sm">
+            <img
+              [src]="userInfo?.profileImageUrl || 'assets/images/default-avatar.jpg'"
+              alt="Photo de profil"
+              class="rounded-circle border"
+              width="30"
+              height="30"
+            />
+            <span class="fw-semibold text-dark">
+              {{ userInfo?.surname }} {{ userInfo?.name }}
+            </span>
+          </a>
+            <button class="btn btn-outline-danger btn-sm" (click)="logout()">Déconnexion</button>
         </div>
+      }
     </div>
+
+    <!-- 📱 OFFCANVAS MOBILE -->
+    <div
+      class="offcanvas offcanvas-end d-lg-none"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">SoukSoccer</h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="offcanvas-body d-flex flex-column justify-content-between">
+        <!-- Liens -->
+        <ul class="navbar-nav text-center">
+          <li class="nav-item mb-2">
+            <a href="/" class="nav-link" aria-label="{{ 'ARIA.LABEL.HOME' | translate }}">{{ 'NAV.HOME' | translate }}</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="/reservation" class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="/" class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
+          </li>
+          <li class="nav-item mb-3">
+            <a href="/dashboard" class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
+          </li>
+        </ul>
+
+        <!-- Bas du menu -->
+        <div class="d-flex flex-column gap-2 align-items-center">
+          <button
+            (click)="toggleLanguage()"
+            class="btn btn-success btn-sm w-100"
+            aria-label="{{ 'ARIA.LABEL.CANGE_LANG' | translate }}"
+          >
+            {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
+          </button>
+
+          @if (!isAuthenticated) {
+            <div class="d-flex justify-content-center gap-2 w-100">
+              <a href="/login" class="btn btn-light btn-sm text-primary flex-fill">{{ 'NAV.LOGIN' | translate }}</a>
+              <a href="/register" class="btn btn-primary btn-sm flex-fill">{{ 'NAV.SIGNUP' | translate }}</a>
+            </div>
+          } @else {
+            <div class="d-flex justify-content-center gap-2 w-100">
+              <a href="" class="btn btn-light btn-sm flex-fill">
+                {{ userInfo?.surname }} {{ userInfo?.name }}
+              </a>
+              <button class="btn btn-outline-danger btn-sm flex-fill" (click)="logout()">{{ 'NAV.DECO' | translate }}</button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
