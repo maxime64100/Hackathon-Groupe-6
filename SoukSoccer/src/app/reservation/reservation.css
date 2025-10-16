@@ -1,0 +1,93 @@
+.card-elev { box-shadow: 0 8px 24px rgba(17,24,39,.06); }
+
+.stat-block { background: #fff; }
+
+.days-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .5rem;
+}
+.day-btn{
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: .8rem;
+    padding: .6rem .4rem;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.day-btn:hover{ transform: translateY(-1px); }
+.day-btn .small{ color: #6b7280 !important; }
+.day-btn.selected{
+    background: #e0e7ff;
+    border-color: #2563eb;
+    color: #1d4ed8;
+}
+
+/* === Créneaux === */
+.slots-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .5rem;
+}
+.slot-card{
+    position: relative;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: .8rem;
+    padding: .7rem .8rem;
+    min-height: 64px;
+    cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.slot-card:hover{ transform: translateY(-1px); }
+.slot-card.selected{
+    background: #e0e7ff;
+    border-color: #2563eb;
+}
+.slot-card.disabled{
+    cursor: not-allowed;
+    opacity: .6;
+    background: #f3f4f6;
+}
+.slot-occup{
+    position: absolute;
+    right: .6rem;
+    bottom: .5rem;
+}
+
+/* Sélecteurs de tables (boutons-cards) */
+.card-select{
+    background: #fff;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.card-select:hover{ transform: translateY(-1px); }
+.card-select.active{
+    border-color: #1d4ed8 !important;
+    box-shadow: 0 0 0 3px rgba(29,78,216,.12);
+    background: #f8fbff;
+}
+.card-select.disabled{
+    opacity: .6; pointer-events: none; background: #f3f4f6;
+}
+
+.status-dot{ width: 10px; height: 10px; border-radius: 50%; }
+
+.chip{
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 6px 10px 6px 6px;
+}
+.add-player{ width: 36px; height: 36px; }
+
+.legend-dot{ width: 16px; height: 8px; border-radius: 999px; display: inline-block; }
+
+/* Responsive */
+@media (max-width: 1100px){
+    .slots-grid{ grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 768px){
+    .days-grid{ grid-template-columns: repeat(7, minmax(40px, 1fr)); }
+    .slots-grid{ grid-template-columns: repeat(3, 1fr); }
+}
