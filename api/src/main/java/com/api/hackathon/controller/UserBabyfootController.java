@@ -46,27 +46,28 @@ public class UserBabyfootController {
 
     // 🔹 PUT - Mettre à jour un utilisateur existant
     @PutMapping("/{id}")
-    public ResponseEntity<UserBabyfoot> updateUser(@PathVariable Integer id, @RequestBody UserBabyfoot updatedUser) {
+    public ResponseEntity<UserBabyfoot> updateUser(
+            @PathVariable Integer id,
+            @RequestBody UserBabyfoot updatedUser) {
+
         return userRepository.findById(id)
                 .map(existingUser -> {
+                    // 🔒 On interdit toute modification du mail et du mot de passe
+                    // (donc on ne touche JAMAIS à ces champs)
                     if (updatedUser.getName() != null) {
                         existingUser.setName(updatedUser.getName());
                     }
                     if (updatedUser.getSurname() != null) {
                         existingUser.setSurname(updatedUser.getSurname());
                     }
-                    if (updatedUser.getMail() != null) {
-                        existingUser.setMail(updatedUser.getMail());
-                    }
-                    if (updatedUser.getPasswordUser() != null) {
-                        existingUser.setPasswordUser(updatedUser.getPasswordUser());
-                    }
-
+                    // On ignore toute tentative de changement du mail ou du mot de passe
+                    // -> rien à faire ici
                     userRepository.save(existingUser);
                     return ResponseEntity.ok(existingUser);
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 
 
     // 🔹 DELETE - Supprimer un utilisateur
