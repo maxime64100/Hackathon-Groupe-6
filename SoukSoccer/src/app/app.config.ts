@@ -4,7 +4,7 @@ import {routes} from './app.routes';
 import {provideClientHydration, withEventReplay} from '@angular/platform-browser';
 import {provideTranslateService} from '@ngx-translate/core';
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
-import {provideHttpClient} from '@angular/common/http'; // 👈 ajout de withFetch
+import {provideHttpClient, withFetch} from '@angular/common/http'; // 👈 ajout de withFetch
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideTranslateService({
       loader: provideTranslateHttpLoader({prefix:'assets/i18n/', suffix:'.json'}),
       fallbackLang: 'en'

@@ -1,7 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {Header} from './header/header';
-import {TranslateService} from '@ngx-translate/core';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from './header/header';
+import {LanguageService} from '../shared/service/language.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,6 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrl: './app.css'
 })
 export class App {
-  private translate = inject(TranslateService);
-
-  constructor() {
-    this.translate.addLangs(['fr', 'en']);
-    this.translate.setFallbackLang('fr');
-    this.translate.use('fr');
-  }
+  // ✅ juste une référence
+  langService = inject(LanguageService);
 }

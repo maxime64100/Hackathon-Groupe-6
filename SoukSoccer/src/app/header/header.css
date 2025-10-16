@@ -15,8 +15,35 @@
 .nav-link {
   font-weight: 500;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .nav-link:hover {
   color: var(--bs-primary);
+}
+
+.header-height {
+  height: 10vh;
+}
+
+.offcanvas {
+  transition: transform 0.35s ease-in-out;
+}
+
+.offcanvas .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.offcanvas .nav-link:hover {
+  color: var(--bs-primary);
+}
+
+.navbar-toggler {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-toggler:not(.collapsed) {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
