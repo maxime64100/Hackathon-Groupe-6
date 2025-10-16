@@ -12,8 +12,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
+@SecurityRequirement(name = "BearerAuth")
+
+@Tag(name = "BookingController", description = "Endpoints protégés de l'API")
+@ApiResponse(responseCode = "200", description = "OK")
+
 @RequestMapping("/api/bookings")
 @CrossOrigin(origins = "*")
 public class BookingController {
@@ -27,13 +39,17 @@ public class BookingController {
     @Autowired
     private BabyfootRepository babyfootRepository;
 
-    // 🔹 Récupérer toutes les réservations
+    // 🔹 Récupérer toutes les réservations    @Operation(summary = "Lister/Récupérer ressource")
+    @ApiResponse(responseCode = "200", description = "OK")
+
     @GetMapping
     public ResponseEntity<List<Booking>> getAllBookings() {
         return ResponseEntity.ok(bookingRepository.findAll());
     }
 
-    // 🔹 Créer une réservation
+    // 🔹 Créer une réservation    @Operation(summary = "Créer ressource")
+    @ApiResponse(responseCode = "201", description = "Créé")
+
     @PostMapping
     public ResponseEntity<?> createBooking(@RequestBody Booking booking) {
 
@@ -55,7 +71,9 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-    // 🔹 Modifier une réservation existante
+    // 🔹 Modifier une réservation existante    @Operation(summary = "Mettre à jour /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateBooking(@PathVariable int id, @RequestBody Booking booking) {
         Optional<Booking> existing = bookingRepository.findById(id);
@@ -88,7 +106,9 @@ public class BookingController {
         return ResponseEntity.ok(updated);
     }
 
-    // 🔹 Supprimer une réservation
+    // 🔹 Supprimer une réservation    @Operation(summary = "Supprimer /{id}")
+    @ApiResponse(responseCode = "204", description = "Supprimé")
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBooking(@PathVariable int id) {
         Optional<Booking> existing = bookingRepository.findById(id);

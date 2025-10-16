@@ -2,15 +2,26 @@ package com.api.hackathon.controller;
 
 import com.api.hackathon.model.UserBabyfoot;
 import com.api.hackathon.repository.UserBabyfootRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
+@SecurityRequirement(name = "BearerAuth")
+@ApiResponse(responseCode = "200", description = "OK")
+
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*") // 🔓 autorise les requêtes depuis ton front Angular
+@CrossOrigin(origins = "*") // 🔓
+@Tag(name = "Utilisateurs", description = "Gestion des utilisateurs de l’application Babyfoot")
 public class UserBabyfootController {
 
     private final UserBabyfootRepository userRepository;
@@ -20,12 +31,18 @@ public class UserBabyfootController {
     }
 
     // 🔹 GET - Récupérer tous les utilisateurs
+    @Operation(summary = "Lister/Récupérer ressource")
+    @ApiResponse(responseCode = "200", description = "OK")
+
     @GetMapping
     public List<UserBabyfoot> getAllUsers() {
         return userRepository.findAll();
     }
 
     // 🔹 GET - Récupérer un utilisateur par ID
+    @Operation(summary = "Lister/Récupérer /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
     @GetMapping("/{id}")
     public ResponseEntity<UserBabyfoot> getUserById(@PathVariable Integer id) {
         Optional<UserBabyfoot> user = userRepository.findById(id);
@@ -34,6 +51,9 @@ public class UserBabyfootController {
     }
 
     // 🔹 POST - Créer un utilisateur
+    @Operation(summary = "Créer ressource")
+    @ApiResponse(responseCode = "201", description = "Créé")
+
     @PostMapping
     public ResponseEntity<UserBabyfoot> createUser(@RequestBody UserBabyfoot newUser) {
         // Vérifie si un utilisateur avec le même email existe déjà
@@ -45,6 +65,9 @@ public class UserBabyfootController {
     }
 
     // 🔹 PUT - Mettre à jour un utilisateur existant
+    @Operation(summary = "Mettre à jour /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
     @PutMapping("/{id}")
     public ResponseEntity<UserBabyfoot> updateUser(
             @PathVariable Integer id,
@@ -71,6 +94,9 @@ public class UserBabyfootController {
 
 
     // 🔹 DELETE - Supprimer un utilisateur
+    @Operation(summary = "Supprimer /{id}")
+    @ApiResponse(responseCode = "204", description = "Supprimé")
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         if (!userRepository.existsById(id)) {
