@@ -2,6 +2,7 @@
   "NAV.BUTTON.CHANGE_LANG": "Langue : ",
   "NAV.HOME": "Accueil",
   "NAV.RESERVATION": "Réservation",
+  "NAV.DASHBOARD": "Tableau de bord",
   "NAV.TOURNAMENTS": "Tournois",
   "NAV.STATS": "Statistiques",
   "NAV.LOGIN": "Connexion",
@@ -9,10 +10,58 @@
 
   "ARIA.LABEL.HOME": "Aller à l'accueil du site",
   "ARIA.LABEL.RESERVATION": "Aller à la page de réservation",
+  "ARIA.LABEL.DASHBOARD": "Aller à la page du tableau de bord",
   "ARIA.LABEL.TOURNAMENTS": "Aller à la page des tournois",
   "ARIA.LABEL.STATS": "Aller à la page des statistiques",
   "ARIA.LABEL.LOGIN": "Se connecter",
   "ARIA.LABEL.SIGNUP": "Créer un compte",
   "ARIA.LABEL.BURGER_MENU": "Ouvrir le menu de navigation",
-  "ARIA.LABEL.CANGE_LANG": "Changer la langue du site"
+  "ARIA.LABEL.CANGE_LANG": "Changer la langue du site",
+
+
+  "DASHBOARD.TITLE": "Tableau de bord Administrateur",
+  "DASHBOARD.SUBTITLE": "Gérez les babyfoots, utilisateurs et surveillez l’activité",
+
+  "DASHBOARD.KPI_BABYFOOTS_ACTIVE": "Babyfoots actifs",
+  "DASHBOARD.KPI_USERS_ACTIVE": "Utilisateurs actifs",
+  "DASHBOARD.KPI_RESERVATIONS_TODAY": "Réservations aujourd'hui",
+  "DASHBOARD.KPI_IN_MAINTENANCE": "En maintenance",
+
+  "DASHBOARD.TABLES_TITLE": "Gestion des Babyfoots",
+  "DASHBOARD.TABLES_ADD": "Ajouter",
+  "DASHBOARD.TABLES_ZONE": "Zone",
+  "DASHBOARD.TABLES_UTILIZATION": "Utilisation",
+  "DASHBOARD.TABLES_GAMES_TODAY": "Parties",
+  "DASHBOARD.TABLES_ISSUE": "Problème",
+  "DASHBOARD.TABLES_SINCE": "Depuis",
+  "DASHBOARD.TABLES_DAYS": "jours",
+  "DASHBOARD.TABLES_VIEW": "Voir",
+  "DASHBOARD.TABLES_EDIT": "Modifier",
+  "DASHBOARD.TABLES_DELETE": "Supprimer",
+
+  "DASHBOARD.STATUS_ACTIVE": "Actif",
+  "DASHBOARD.STATUS_MAINTENANCE": "Maintenance",
+
+  "DASHBOARD.USERS_TITLE": "Gestion des Utilisateurs",
+  "DASHBOARD.USERS_SEARCH_PLACEHOLDER": "Rechercher…",
+  "DASHBOARD.USERS_INVITE": "Inviter",
+  "DASHBOARD.USERS_ROLE_ADMIN": "Admin",
+  "DASHBOARD.USERS_ROLE_MODERATOR": "Modérateur",
+  "DASHBOARD.USERS_ROLE_STUDENT": "Étudiant",
+  "DASHBOARD.USERS_ONLINE": "En ligne",
+  "DASHBOARD.USERS_SEE_ALL": "Voir tous les utilisateurs",
+
+  "DASHBOARD.ACTIONS_TITLE": "Actions Rapides",
+  "DASHBOARD.ACTIONS_ADD_TABLE": "Ajouter un babyfoot",
+  "DASHBOARD.ACTIONS_INVITE_USER": "Inviter un utilisateur",
+  "DASHBOARD.ACTIONS_REPORT_MAINTENANCE": "Signaler maintenance",
+  "DASHBOARD.ACTIONS_VIEW_REPORTS": "Voir les rapports",
+
+  "DASHBOARD.ACTIVITY_TITLE": "Activité Récente",
+
+  "DASHBOARD.SYSTEM_TITLE": "État du Système",
+  "DASHBOARD.SYSTEM_OPERATIONAL": "Opérationnel",
+  "DASHBOARD.SYSTEM_PARTIAL": "Partiel",
+  "DASHBOARD.SYSTEM_INCIDENT": "Incident"
+
 }
