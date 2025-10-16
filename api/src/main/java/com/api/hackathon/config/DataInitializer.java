@@ -13,9 +13,9 @@ public class DataInitializer {
     CommandLineRunner initDatabase(UserBabyfootRepository userRepo) {
         return args -> {
             if (userRepo.count() == 0) {
-                userRepo.save(new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123"));
-                userRepo.save(new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123"));
-                userRepo.save(new UserBabyfoot(null, "Charlie", "Durand", "charlie@example.com", "test1234"));
+                userRepo.save(new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123", null));
+                userRepo.save(new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123", null));
+                userRepo.save(new UserBabyfoot(null, "Charlie", "Durand", "charlie@example.com", "test1234", null));
                 System.out.println("✅ Données de test insérées dans user_babyfoot");
             } else {
                 System.out.println("ℹ️ Données déjà présentes, aucune insertion");

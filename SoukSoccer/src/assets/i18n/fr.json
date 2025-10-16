@@ -112,6 +112,8 @@
   "DASHBOARD.SYSTEM_TITLE": "État du Système",
   "DASHBOARD.SYSTEM_OPERATIONAL": "Opérationnel",
   "DASHBOARD.SYSTEM_PARTIAL": "Partiel",
-  "DASHBOARD.SYSTEM_INCIDENT": "Incident"
+  "DASHBOARD.SYSTEM_INCIDENT": "Incident",
+
+  "NAV.DECO": "Déconnexion"
 
 }

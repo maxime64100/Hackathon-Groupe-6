@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,18 +35,29 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {
-        authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getMail(), request.getPassword()));
+        authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getMail(), request.getPassword())
+        );
 
         UserBabyfoot user = userRepo.findByMail(request.getMail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         String token = jwtService.generateToken(
                 new org.springframework.security.core.userdetails.User(
-                        user.getMail(), user.getPasswordUser(), List.of(() -> "USER"))
+                        user.getMail(),
+                        user.getPasswordUser(),
+                        List.of(() -> "USER")
+                )
         );
 
-        return ResponseEntity.ok(Map.of("token", token));
+        // ✅ On renvoie maintenant aussi l'id de l'utilisateur
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
+        response.put("userId", user.getIdUser());
+
+        return ResponseEntity.ok(response);
     }
+
 }
 
 @Data

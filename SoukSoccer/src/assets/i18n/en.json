@@ -112,5 +112,7 @@
   "DASHBOARD.SYSTEM_TITLE": "System Status",
   "DASHBOARD.SYSTEM_OPERATIONAL": "Operational",
   "DASHBOARD.SYSTEM_PARTIAL": "Partial",
-  "DASHBOARD.SYSTEM_INCIDENT": "Incident"
+  "DASHBOARD.SYSTEM_INCIDENT": "Incident",
+
+  "NAV.DECO": "Log out"
 }
