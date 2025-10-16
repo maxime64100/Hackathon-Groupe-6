@@ -15,8 +15,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
+
+@Tag(name = "AuthController", description = "Endpoints publics d'authentification")
+@ApiResponse(responseCode = "200", description = "OK")
+
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
@@ -24,14 +35,18 @@ public class AuthController {
     private final AuthenticationManager authManager;
     private final UserBabyfootRepository userRepo;
     private final JwtService jwtService;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;    @Operation(summary = "Créer /register")
+    @ApiResponse(responseCode = "201", description = "Créé")
+
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserBabyfoot user) {
         user.setPasswordUser(passwordEncoder.encode(user.getPasswordUser()));
         userRepo.save(user);
         return ResponseEntity.ok("Utilisateur enregistré !");
-    }
+    }    @Operation(summary = "Créer /login")
+    @ApiResponse(responseCode = "201", description = "Créé")
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {

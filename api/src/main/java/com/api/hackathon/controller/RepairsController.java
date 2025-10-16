@@ -9,18 +9,34 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
+@SecurityRequirement(name = "BearerAuth")
+
+@Tag(name = "RepairsController", description = "Endpoints protégés de l'API")
+@ApiResponse(responseCode = "200", description = "OK")
+
 @RequestMapping("/api/repairs")
 @RequiredArgsConstructor
 public class RepairsController {
 
-    private final RepairsService service;
+    private final RepairsService service;    @Operation(summary = "Lister/Récupérer ressource")
+    @ApiResponse(responseCode = "200", description = "OK")
+
 
     @GetMapping
     public ResponseEntity<List<Repairs>> getAll() {
         return ResponseEntity.ok(service.getAll());
-    }
+    }    @Operation(summary = "Lister/Récupérer /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
@@ -28,7 +44,9 @@ public class RepairsController {
                 .<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("Repairs not found with id " + id));
-    }
+    }    @Operation(summary = "Créer ressource")
+    @ApiResponse(responseCode = "201", description = "Créé")
+
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Repairs r) {
@@ -48,7 +66,9 @@ public class RepairsController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error creating repairs: " + e.getMessage());
         }
-    }
+    }    @Operation(summary = "Mettre à jour /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Repairs r) {
@@ -70,7 +90,9 @@ public class RepairsController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error updating repairs: " + e.getMessage());
         }
-    }
+    }    @Operation(summary = "Supprimer /{id}")
+    @ApiResponse(responseCode = "204", description = "Supprimé")
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {

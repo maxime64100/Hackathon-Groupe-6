@@ -20,6 +20,8 @@ public class DataInitializer {
             RepairsRepository repairsRepo
     ) {
         return args -> {
+            System.out.println("Réinitialisation des données de test...");
+
             // On supprime les anciennes données sans dropper les tables
             bookingRepo.deleteAll();
             tournamentRepo.deleteAll();
@@ -28,9 +30,9 @@ public class DataInitializer {
             userRepo.deleteAll();
 
             // USERS
-            UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123", null);
-            UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123", null);
-            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", "admin123", null);
+            UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123", "USER", "ATTAQUANT");
+            UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123", "USER", "DEFENSEUR");
+            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", "admin123", "ADMIN", "COACH");
             userRepo.saveAll(List.of(alice, bob, admin));
 
             // BABYFOOTS

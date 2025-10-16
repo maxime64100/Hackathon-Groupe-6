@@ -8,18 +8,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
+@SecurityRequirement(name = "BearerAuth")
+
+@Tag(name = "TournamentController", description = "Endpoints protégés de l'API")
+@ApiResponse(responseCode = "200", description = "OK")
+
 @RequestMapping("/api/tournaments")
 @RequiredArgsConstructor
 public class TournamentController {
 
-    private final TournamentService service;
+    private final TournamentService service;    @Operation(summary = "Lister/Récupérer ressource")
+    @ApiResponse(responseCode = "200", description = "OK")
+
 
     @GetMapping
     public ResponseEntity<List<Tournament>> getAll() {
         return ResponseEntity.ok(service.getAll());
-    }
+    }    @Operation(summary = "Lister/Récupérer /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
@@ -27,7 +43,9 @@ public class TournamentController {
                 .<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("Tournament not found with id " + id));
-    }
+    }    @Operation(summary = "Créer ressource")
+    @ApiResponse(responseCode = "201", description = "Créé")
+
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Tournament t) {
@@ -41,7 +59,9 @@ public class TournamentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error creating tournament: " + e.getMessage());
         }
-    }
+    }    @Operation(summary = "Mettre à jour /{id}")
+    @ApiResponse(responseCode = "200", description = "OK")
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Tournament t) {
@@ -57,7 +77,9 @@ public class TournamentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error updating tournament: " + e.getMessage());
         }
-    }
+    }    @Operation(summary = "Supprimer /{id}")
+    @ApiResponse(responseCode = "204", description = "Supprimé")
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
