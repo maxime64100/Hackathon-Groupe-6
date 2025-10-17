@@ -10,7 +10,7 @@ sudo apt install -y git curl default-jdk docker.io docker-compose
 
 # --- 2️⃣ Création de l’arborescence ---
 echo "[2/5] Création des répertoires..."
-sudo mkdir -p /docker/{mariadb/data,nginx/{html,conf.d,certs}} /git /api
+sudo mkdir -p /docker/{mariadb/data,nginx/{html,conf.d,certs},portainer} /git /api
 sudo chown -R $USER:$USER /docker /git /api
 
 # --- 3️⃣ Clonage du dépôt et préparation de l’API ---
@@ -83,6 +83,17 @@ services:
       - /docker/nginx/html:/usr/share/nginx/html:ro
       - /docker/nginx/conf.d:/etc/nginx/conf.d:ro
       - /docker/nginx/certs:/etc/nginx/certs:ro
+    networks:
+      - hackathon_net
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - /docker/portainer:/data
     networks:
       - hackathon_net
 
