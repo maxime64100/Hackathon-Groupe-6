@@ -10,8 +10,11 @@ export interface UserBabyfoot {
   mail: string;
   name: string;
   surname: string;
+  role: string;
+  passwordUser: string;
   profileImageUrl?: string;
 }
+
 
 export interface PaginatedUsers {
   users: UserBabyfoot[];
@@ -24,7 +27,7 @@ export interface PaginatedUsers {
 export class UserService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = environment.apiUrl + '/users';
+  private apiUrl = environment.apiUrl;
   private isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -47,23 +50,33 @@ export class UserService {
   getUsers(page = 0, size = 10): Observable<PaginatedUsers> {
     const headers = this.getAuthHeaders();
     return this.http.get<PaginatedUsers>(
-      `${this.apiUrl}?page=${page}&size=${size}`,
+      `${this.apiUrl}/users?page=${page}&size=${size}`,
       { headers }
     );
   }
 
   deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/users/${id}`);
   }
 
   getUserById(id: number): Observable<UserBabyfoot> {
     const headers = this.getAuthHeaders();
-    return this.http.get<UserBabyfoot>(`${this.apiUrl}/${id}`, { headers });
+    return this.http.get<UserBabyfoot>(`${this.apiUrl}/users/${id}`, { headers });
   }
 
   updateUser(id: number, user: Partial<UserBabyfoot>): Observable<UserBabyfoot> {
     const headers = this.getAuthHeaders();
-    return this.http.put<UserBabyfoot>(`${this.apiUrl}/${id}`, user, { headers });
+    return this.http.put<UserBabyfoot>(`${this.apiUrl}/users/${id}`, user, { headers });
   }
+
+  createUser(user: Partial<UserBabyfoot>): Observable<string> {
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${this.apiUrl}/auth/register`, user, {
+      headers,
+      responseType: 'text'
+    });
+  }
+
+
 }
 

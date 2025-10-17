@@ -5,11 +5,19 @@ import com.api.hackathon.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Configuration
 public class DataInitializer {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public DataInitializer(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Bean
     CommandLineRunner initDatabase(
@@ -32,7 +40,7 @@ public class DataInitializer {
             // USERS
             UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123", "USER", "ATTAQUANT", null);
             UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123", "USER", "DEFENSEUR", null);
-            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", "admin123", "ADMIN", "COACH", null);
+            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", passwordEncoder.encode("admin123"), "ADMIN", "COACH", null);
             userRepo.saveAll(List.of(alice, bob, admin));
 
             // BABYFOOTS
