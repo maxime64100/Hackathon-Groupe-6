@@ -46,50 +46,35 @@
             </button>
           </div>
 
-          <div class="vstack gap-2">
-            @for (t of tables(); track t.id) {
+          <!-- Liste dynamique des babyfoots -->
+          <div *ngIf="tables().length === 0" class="text-muted small">
+            Aucun babyfoot disponible.
+          </div>
+
+          <div class="vstack gap-2" *ngIf="tables().length > 0">
+            @for (t of tables(); track t.idBabyfoot) {
               <div class="table-row border rounded-4 bg-white p-3">
                 <div class="d-flex align-items-start gap-3">
                   <div class="flex-grow-1">
                     <div class="d-flex align-items-center gap-2">
-                      <div class="fw-semibold">{{ t.name }}</div>
-                      <span class="badge rounded-pill small" [ngClass]="statusBadgeClass(t.status)">
-                        {{ t.status === 'Actif'
-                        ? ('DASHBOARD.STATUS_ACTIVE' | translate)
-                        : ('DASHBOARD.STATUS_MAINTENANCE' | translate) }}
+                      <div class="fw-semibold">{{ t.idBabyfoot }}</div>
+                      <span class="badge rounded-pill small"
+                            [ngClass]="statusBadgeClass(t.statutBabyfoot)">
+                            {{ t.statutBabyfoot === 'free' ? 'Libre'
+                        : t.statutBabyfoot === 'occupied' ? 'Occupé'
+                          : 'Maintenance' }}
                       </span>
                     </div>
 
                     <div class="row small text-muted mt-2 g-2">
                       <div class="col-md-4">
                         <span class="text-uppercase text-muted me-1">{{ 'DASHBOARD.TABLES_ZONE' | translate }}:</span>
-                        <span>{{ t.zone }}</span>
+                        <span>{{ t.place }}</span>
                       </div>
-
-                      @if (t.status === 'Actif') {
-                        <div class="col-md-4">
-                          <span class="text-uppercase text-muted me-1">{{ 'DASHBOARD.TABLES_UTILIZATION' | translate }}:</span>
-                          <span class="fw-semibold">{{ t.utilization }}%</span>
-                        </div>
-                        <div class="col-md-4">
-                          <span class="text-uppercase text-muted me-1">{{ 'DASHBOARD.TABLES_GAMES_TODAY' | translate }}:</span>
-                          <span class="fw-semibold">{{ t.gamesToday }}</span>
-                        </div>
-                      }
-
-                      @if (t.status === 'Maintenance') {
-                        <div class="col-md-8 text-danger">
-                          <span class="text-uppercase text-muted me-1">{{ 'DASHBOARD.TABLES_ISSUE' | translate }}:</span>
-                          <a href="#" class="text-danger text-decoration-none" (click)="$event.preventDefault()">{{ t.issue }}</a>
-                        </div>
-                        <div class="col-md-4">
-                          <span class="text-uppercase text-muted me-1">{{ 'DASHBOARD.TABLES_SINCE' | translate }}:</span>
-                          <span>{{ t.sinceDays }} {{ 'DASHBOARD.TABLES_DAYS' | translate }}</span>
-                        </div>
-                      }
                     </div>
                   </div>
 
+                  <!-- Boutons d'action -->
                   <div class="d-flex align-items-center gap-2 ms-auto">
                     <button class="btn btn-light border rounded-3"
                             [attr.title]="'DASHBOARD.TABLES_VIEW' | translate"
@@ -104,14 +89,13 @@
                     <button class="btn btn-light border rounded-3"
                             [attr.title]="'DASHBOARD.TABLES_DELETE' | translate"
                             (click)="removeTable(t)">
-                      <i class="bi bi-trash"></i>
+                      <i class="bi bi-trash text-danger"></i>
                     </button>
                   </div>
                 </div>
               </div>
             }
           </div>
-
         </div>
       </div>
 

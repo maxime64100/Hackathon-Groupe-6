@@ -77,6 +77,10 @@ export class UserService {
     });
   }
 
+  getStats(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.get(`${this.apiUrl}/stats`, { headers });
+  }
 
 }
 
