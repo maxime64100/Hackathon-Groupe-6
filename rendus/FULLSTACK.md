@@ -66,3 +66,6 @@ Travail avec les autres filières:
 # Conclusion 
 ### Oskar Morel
 Ce travail m'a permis de mettre en place une stack FullStack complète, de l'API à l'interface. Je me suis surtout occupé de quelques interfaces, du module multilangue, du RGAA, de la gestion des utilsateurs et du dashboard.
+
+### Fallek Maxime
+C'est la première fois pour ma part que j'utilisais Angular (et 2ème fois pour SpringBoot donc peu de base). Cela m'a permis de monter en compétence et d'apprendre un nouveau langage. J'ai réalisé des interfaces en front, le branchement entre le front et le back de la création de réservations et la liste des babyfoots et j'ai également intégré le chatbot ce qui était une première pour moi.
