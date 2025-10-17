@@ -7,7 +7,7 @@
 
 ## Équipe IA & Data
 
-- **LEMAIRE César** n
+- **LEMAIRE César** 
 - **ALBALAT Noah** 
 
 ---
@@ -18,9 +18,9 @@
 
 Ce projet analyse les performances des joueurs de babyfoot à travers **trois axes principaux** :
 
-1. ** Top 10 Buteurs** - Identifier les meilleurs attaquants
-2. ** Top 5 Défenseurs** - Classer les meilleurs gardiens (saves)
-3. ** Influence du camp** - Analyser si le choix Rouge/Bleu affecte les chances de victoire
+1. **Top 10 Buteurs** - Identifier les meilleurs attaquants
+2. **Top 5 Défenseurs** - Classer les meilleurs gardiens (saves)
+3. **Influence du camp** - Analyser si le choix Rouge/Bleu affecte les chances de victoire
 
 ### Dataset
 
