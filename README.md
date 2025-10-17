@@ -54,13 +54,72 @@ Bienvenue dans le Hackathon Ynov Toulouse 2025 !
 
 > Décrivez brièvement le projet, son objectif. Utilisez une vue business pour décrire ce que votre produit/service apporte à vos utilisateurs.
 
+Notre projet a pour ambition de **digitaliser et moderniser la gestion des babyfoots** présents sur le campus **Ynov Toulouse**.  
+Nous avons conçu une application web complète permettant :
+
+- Aux **étudiants** de **réserver un babyfoot**, consulter son **état en temps réel** et gérer leur compte utilisateur.
+- Aux **administrateurs** de disposer d’un **tableau de bord centralisé** pour suivre l’état des babyfoots, gérer les réservations, signaler des pannes et superviser les tournois.
+
+###  Objectif business
+
+> Offrir une expérience fluide, moderne et ludique pour la gestion des babyfoots du campus, en rendant les réservations simples, les maintenances transparentes et l’expérience plus engageante pour les 1000 étudiants d’Ynov Toulouse.
+
+---
+
+
 ## Technologies utilisées
 
 > Ici, listez les principales technologies, en expliquant pourquoi vous les avez choisies. Tout choix technique, langages, frameworks doit être justifié. (Parce que vous maîtrisez déjà la techno, parce que c'est la plus adaptée au besoin, parce que c'est la plus innovante, etc.)
 
+| Couche                    | Technologie | Justification |
+|:--------------------------|:-------------|:--------------|
+| **Backend API**           | **Spring Boot (Java 21)** | Framework robuste, rapide à mettre en œuvre, et maîtrisé par l’équipe. Parfait pour créer une API REST fiable. |
+| **ORM & Base de données** | **Spring Data JPA + MySQL** | Simplifie la persistance des données tout en assurant la compatibilité avec le modèle relationnel. |
+| **Sécurité**              | **Spring Security + JWT** | Garantit une authentification sécurisée et adaptable selon le rôle (user/admin). |
+| **Documentation**         | **Swagger / OpenAPI 3.0** | Fournit une documentation interactive pour tester et comprendre l’API. |
+| **Frontend**              | **Angular** | Interface utilisateur moderne et dynamique, adaptée aux besoins d’administration et de réservation. |
+
 ## Architecture
 
 > Faite un schéma simple de l'architecture technique de votre solution. Chaque service/composant est un bloc, et les interactions entre les blocs sont des flèches. Vous pouvez utiliser des outils comme [draw.io](https://app.diagrams.net/), ou encore [Excalidraw](https://excalidraw.com/) pour créer vos schémas. C'est une vue d'ensemble, pas un détail de chaque composant. Chacun d'entre vous doit être capable d'expliquer cette architecture.
+
+L’architecture suit une séparation claire entre les couches :
+
+```text
++---------------------------+
+|        Frontend (Angular) |
+|  - Interface de gestion   |
+|  - Authentification user  |
+|  - Modification user      |
+|  - Réservation babyfoots  |
+|  - Tableau admin          |
+|  - Chatbot IA             |
++-------------+-------------+
+              |
+              v
++-------------+-------------+
+|     API Backend (Spring Boot) |
+|  - Authentification JWT       |
+|  - CRUD Utilisateurs          |
+|  - CRUD Babyfoots             |
+|  - CRUD Réservations          |
+   - CRUD Tournois
+|  - Documentation Swagger UI   |
++-------------+-------------+
+              |
+              v
++-------------+-------------+
+|     MySQL Database         |
+|  - Tables :                |
+|    • user_babyfoot         |
+|    • babyfoot              |
+|    • booking               |
+|    • repairs               |
+|    • tournament            |
++-----------------------------+
+```
+Chaque entité (User, Babyfoot, Booking) est reliée via des clés étrangères et gérée par JPA.
+Le frontend Angular interagit avec l’API pour récupérer ou modifier les données, tandis que le backend assure la logique métier et la sécurité.
 
 ## Guide de déploiement
 
@@ -75,5 +134,29 @@ Exemple de lancement en **une seule commande**:
 ## Etat des lieux
 
 > Section d'honnêteté, décrivez ce qui n'a pas été fait, ce qui aurait pu être amélioré, les limitations de votre solution actuelle. Montrez que vous avez une vision critique de votre travail, de ce qui a été accompli durant ces deux demi-journées.
-
 Le but n'est pas de faire un produit fini, mais de montrer vos compétences techniques, votre capacité à travailler en équipe, à gérer un projet, et à livrer quelque chose de fonctionnel dans un temps limité.
+
+| Élément                   | État   |
+|:--------------------------|:-------|
+| **Authentification JWT**  | **✅**  |
+| **CRUD**                  | **✅**  |
+| **Sécurité**              | **✅**  | 
+| **Documentation Swagger** | **✅**  | 
+| **Frontend**              | **🚧** |
+
+
+Points perfectibles :
+- Amélioration de la gestion des erreurs et des messages utilisateurs.
+
+- Intégration du frontend Angular avec l’API (connexion en cours).
+
+- Ajout de statistiques et visualisation des données en temps réel.
+
+En l’espace de deux journées, notre équipe a su concevoir une solution fonctionnelle, sécurisée et évolutive, illustrant une véritable collaboration entre les pôles FullStack, Infra et Data.
+
+Ce projet démontre notre capacité à :
+-Structurer une architecture technique claire,
+-Mettre en place une API REST documentée et sécurisée,
+-Travailler en équipe efficacement,
+-Livrer une application utilisable dans un contexte réel.
+-Une belle démonstration de créativité, de rigueur et d’efficacité collective. 

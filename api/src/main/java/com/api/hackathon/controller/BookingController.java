@@ -39,7 +39,7 @@ public class BookingController {
     @Autowired
     private BabyfootRepository babyfootRepository;
 
-    // 🔹 Récupérer toutes les réservations    @Operation(summary = "Lister/Récupérer ressource")
+    @Operation(summary = "Lister/Récupérer ressource")
     @ApiResponse(responseCode = "200", description = "OK")
 
     @GetMapping
@@ -47,7 +47,7 @@ public class BookingController {
         return ResponseEntity.ok(bookingRepository.findAll());
     }
 
-    // 🔹 Créer une réservation    @Operation(summary = "Créer ressource")
+    @Operation(summary = "Créer ressource")
     @ApiResponse(responseCode = "201", description = "Créé")
 
     @PostMapping
@@ -71,7 +71,7 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-    // 🔹 Modifier une réservation existante    @Operation(summary = "Mettre à jour /{id}")
+    @Operation(summary = "Mettre à jour /{id}")
     @ApiResponse(responseCode = "200", description = "OK")
 
     @PutMapping("/{id}")
@@ -106,7 +106,7 @@ public class BookingController {
         return ResponseEntity.ok(updated);
     }
 
-    // 🔹 Supprimer une réservation    @Operation(summary = "Supprimer /{id}")
+    @Operation(summary = "Supprimer /{id}")
     @ApiResponse(responseCode = "204", description = "Supprimé")
 
     @DeleteMapping("/{id}")
