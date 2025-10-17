@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,8 @@ import { HttpClient } from '@angular/common/http';
 export class Register {
   private http = inject(HttpClient);
   private router = inject(Router);
+
+  private apiUrl = environment.apiUrl + '/auth';
 
   submitting = false;
   serverMessage: string | null = null;
@@ -41,7 +44,7 @@ export class Register {
     this.serverMessage = null;
     this.serverError = null;
 
-    this.http.post('http://localhost:8080/api/auth/register', payload, { responseType: 'text' }).subscribe({
+    this.http.post(`${this.apiUrl}/register`, payload, { responseType: 'text' }).subscribe({
       next: (res) => {
         this.serverMessage = res;
         this.submitting = false;
