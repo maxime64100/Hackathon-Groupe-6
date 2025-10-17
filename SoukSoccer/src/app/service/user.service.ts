@@ -27,7 +27,7 @@ export interface PaginatedUsers {
 export class UserService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = 'http://localhost:8080/api/users';
+  private apiUrl = 'http://localhost:8080/api';
   private isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
