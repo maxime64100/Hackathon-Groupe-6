@@ -1,15 +1,14 @@
 package com.api.hackathon;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@Disabled
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 class HackathonApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    void contextLoads() {
+    }
 }

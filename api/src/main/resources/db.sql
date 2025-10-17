@@ -11,7 +11,9 @@ CREATE TABLE user_babyfoot (
                                surname VARCHAR(100) NOT NULL,
                                mail VARCHAR(150) NOT NULL UNIQUE,
                                password_user VARCHAR(255) NOT NULL,
-                               role ENUM('user','admin') DEFAULT 'user'
+                               role VARCHAR(150) DEFAULT 'user',
+                               role_game VARCHAR(150),
+                               profileImageUrl VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE babyfoot (

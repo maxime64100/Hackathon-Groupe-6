@@ -5,6 +5,8 @@ import com.api.hackathon.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,22 +19,26 @@ public class DataInitializer {
             BabyfootRepository babyfootRepo,
             BookingRepository bookingRepo,
             TournamentRepository tournamentRepo,
-            RepairsRepository repairsRepo
+            RepairsRepository repairsRepo,
+            PasswordEncoder passwordEncoder
     ) {
         return args -> {
             System.out.println("Réinitialisation des données de test...");
 
-            // On supprime les anciennes données sans dropper les tables
             bookingRepo.deleteAll();
             tournamentRepo.deleteAll();
             repairsRepo.deleteAll();
             babyfootRepo.deleteAll();
             userRepo.deleteAll();
 
-            // USERS
-            UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com", "azerty123", "USER", "ATTAQUANT", null);
-            UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com", "password123", "USER", "DEFENSEUR", null);
-            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com", "admin123", "ADMIN", "COACH", null);
+            // USERS (hashés)
+            UserBabyfoot alice = new UserBabyfoot(null, "Alice", "Dupont", "alice@example.com",
+                    passwordEncoder.encode("azerty123"), "USER", "ATTAQUANT", null);
+            UserBabyfoot bob = new UserBabyfoot(null, "Bob", "Martin", "bob@example.com",
+                    passwordEncoder.encode("password123"), "USER", "DEFENSEUR", null);
+            UserBabyfoot admin = new UserBabyfoot(null, "Admin", "Root", "admin@example.com",
+                    passwordEncoder.encode("admin123"), "ADMIN", "COACH", null);
+
             userRepo.saveAll(List.of(alice, bob, admin));
 
             // BABYFOOTS
@@ -60,7 +66,7 @@ public class DataInitializer {
                     LocalDateTime.now().minusDays(3), baby2);
             repairsRepo.saveAll(List.of(rep1, rep2));
 
-            System.out.println("Données de test insérées avec succès !");
+            System.out.println("✅ Données de test insérées avec succès !");
         };
     }
 }
