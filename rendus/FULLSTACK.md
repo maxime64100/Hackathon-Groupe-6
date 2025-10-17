@@ -31,3 +31,38 @@ Autrement, il n'y a pas de format imposé, mais essayez de rester clair et conci
 En conclusion, cela doit résumer votre travail en tant que développeur.se FullStack, et vous permettre de garder un trace écrite de votre contribution au projet.
 
 Merci de votre participation, et bon courage pour la suite du hackathon !
+
+## Fonctionnalités implémentées
+**Back-end:**
+- API complète développée avec Spring Boot.
+- Authentification sécurisée avec JWT (login, inscription, gestion des rôles).
+- Gestion des réservations de babyfoot, des utilisateurs et des ressources du site.
+- Tests unitaires pour assurer la fiabilité du code et la cohérence des endpoints.
+**Front-end:**
+- Application responsive et multilingue, interface moderne et épurée.
+- Pages principales :
+  - Page d’accueil
+  - Page de réservation de babyfoot
+  - Dashboard administrateur (gestion des babyfoots, utilisateurs et réservations)
+  - Espace utilisateur connecté
+  - Connexion / Inscription / Déconnexion
+- Respect partiel des normes RGAA pour l’accessibilité.
+## Choix techniques
+- Spring Boot pour la rapidité de mise en place, la robustesse et la gestion des dépendances.
+- JWT pour une authentification stateless et sécurisée.
+- Angular pour une interface dynamique et fluide.
+- ngx-translate pour la gestion i18n
+
+## Démarche et collaboration
+Chacun sur sa branche. Pull Requests sur github puis merge sur la branche 'dev'. Ensuite gros merge sur la branche 'main' pour le déloiement. 
+Travail avec les autres filières:
+- Data/IA pour la partie dashboard (admin et stats) et le chat bot IA
+- Infra pour le déploiement de la bd, back et front sur un serveur
+
+## Difficultés rencontrées
+- Gestion du temps (deux jours c'est pas beaucoup)
+- Gestion des droits/rôles
+
+# Conclusion 
+### Oskar Morel
+Ce travail m'a permis de mettre en place une stack FullStack complète, de l'API à l'interface. Je me suis surtout occupé de quelques interfaces, du module multilangue, du RGAA, de la gestion des utilsateurs et du dashboard.
