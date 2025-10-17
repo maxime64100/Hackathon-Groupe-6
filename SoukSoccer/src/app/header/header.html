@@ -33,19 +33,19 @@
       </ul>
 
       <div class="me-2">
-        <button (click)="toggleLanguage()" class="btn btn-success btn-sm">
+        <button aria-label="{{ 'ARIA.LABEL.CHANGE_LANG' | translate }}" (click)="toggleLanguage()" class="btn btn-success btn-sm">
           {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
         </button>
       </div>
 
       @if (!isAuthenticated) {
         <div class="d-flex align-items-center">
-          <a href="/login" class="btn btn-light btn-sm text-primary me-2">{{ 'NAV.LOGIN' | translate }}</a>
-          <a href="/register" class="btn btn-primary btn-sm">{{ 'NAV.SIGNUP' | translate }}</a>
+          <a aria-label="{{ 'ARIA.LABEL.LOGIN' | translate }}" href="/login" class="btn btn-light btn-sm text-primary me-2">{{ 'NAV.LOGIN' | translate }}</a>
+          <a aria-label="{{ 'ARIA.LABEL.SIGNUP' | translate }}" href="/register" class="btn btn-primary btn-sm">{{ 'NAV.SIGNUP' | translate }}</a>
         </div>
       } @else {
         <div class="d-flex align-items-center gap-2 ms-3">
-          <a href="/user-profile" class="btn btn-light btn-sm">
+          <a aria-label="{{ 'ARIA.LABEL.NAV.USER.PROFILE' | translate }}" href="/user-profile" class="btn btn-light btn-sm">
             <img
               [src]="userInfo?.profileImageUrl || 'assets/images/default-avatar.jpg'"
               alt="Photo de profil"
@@ -57,7 +57,7 @@
               {{ userInfo?.surname }} {{ userInfo?.name }}
             </span>
           </a>
-            <button class="btn btn-outline-danger btn-sm" (click)="logout()">Déconnexion</button>
+            <button aria-label="{{ 'ARIA.LABEL.NAV.DECO' | translate }}" class="btn btn-outline-danger btn-sm" (click)="logout()">Déconnexion</button>
         </div>
       }
     </div>
@@ -75,7 +75,7 @@
           type="button"
           class="btn-close text-reset"
           data-bs-dismiss="offcanvas"
-          aria-label="Close"
+          aria-label="{{ 'ARIA.LABEL.NAV.FERMER.MENU' | translate }}"
         ></button>
       </div>
 
@@ -101,22 +101,22 @@
           <button
             (click)="toggleLanguage()"
             class="btn btn-success btn-sm w-100"
-            aria-label="{{ 'ARIA.LABEL.CANGE_LANG' | translate }}"
+            aria-label="{{ 'ARIA.LABEL.CHANGE_LANG' | translate }}"
           >
             {{ 'NAV.BUTTON.CHANGE_LANG' | translate }} ({{ currentLang.toUpperCase() }})
           </button>
 
           @if (!isAuthenticated) {
             <div class="d-flex justify-content-center gap-2 w-100">
-              <a href="/login" class="btn btn-light btn-sm text-primary flex-fill">{{ 'NAV.LOGIN' | translate }}</a>
-              <a href="/register" class="btn btn-primary btn-sm flex-fill">{{ 'NAV.SIGNUP' | translate }}</a>
+              <a aria-label="{{ 'ARIA.LABEL.LOGIN' | translate }}" href="/login" class="btn btn-light btn-sm text-primary flex-fill">{{ 'NAV.LOGIN' | translate }}</a>
+              <a aria-label="{{ 'ARIA.LABEL.SIGNUP' | translate }}" href="/register" class="btn btn-primary btn-sm flex-fill">{{ 'NAV.SIGNUP' | translate }}</a>
             </div>
           } @else {
             <div class="d-flex justify-content-center gap-2 w-100">
-              <a href="/user-profile" class="btn btn-light btn-sm flex-fill">
+              <a aria-label="{{ 'ARIA.LABEL.NAV.USER.PROFILE' | translate }}" href="/user-profile" class="btn btn-light btn-sm flex-fill">
                 {{ userInfo?.surname }} {{ userInfo?.name }}
               </a>
-              <button class="btn btn-outline-danger btn-sm flex-fill" (click)="logout()">{{ 'NAV.DECO' | translate }}</button>
+              <button aria-label="{{ 'ARIA.LABEL.NAV.DECO' | translate }}" class="btn btn-outline-danger btn-sm flex-fill" (click)="logout()">{{ 'NAV.DECO' | translate }}</button>
             </div>
           }
         </div>

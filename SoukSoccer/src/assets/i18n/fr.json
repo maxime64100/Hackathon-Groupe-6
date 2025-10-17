@@ -7,6 +7,10 @@
   "NAV.STATS": "Statistiques",
   "NAV.LOGIN": "Connexion",
   "NAV.SIGNUP": "S'inscrire",
+  "NAV.DECO": "Déconnexion",
+  "ARIA.LABEL.NAV.DECO": "Se déconnecter",
+  "ARIA.LABEL.NAV.USER.PROFILE": "Se déconnecter",
+  "ARIA.LABEL.NAV.FERMER.MENU": "Fermer le menu de navigation",
   "ARIA.LABEL.HOME": "Aller à l'accueil du site",
   "ARIA.LABEL.RESERVATION": "Aller à la page de réservation",
   "ARIA.LABEL.DASHBOARD": "Aller à la page du tableau de bord",
@@ -15,7 +19,7 @@
   "ARIA.LABEL.LOGIN": "Se connecter",
   "ARIA.LABEL.SIGNUP": "Créer un compte",
   "ARIA.LABEL.BURGER_MENU": "Ouvrir le menu de navigation",
-  "ARIA.LABEL.CANGE_LANG": "Changer la langue du site",
+  "ARIA.LABEL.CHANGE_LANG": "Changer la langue du site",
   "HOME.TITLE": "Accueil",
   "HOME.HERO.TITLE": "Le Babyfoot du Futur",
   "HOME.HERO.DESCRIPTION": "Découvrez l’expérience babyfoot révolutionnée d’Ynov Toulouse. Réservations intelligentes, statistiques en temps réel, tournois organisés et bien plus encore.",
@@ -114,16 +118,18 @@
   "DASHBOARD.SYSTEM_PARTIAL": "Partiel",
   "DASHBOARD.SYSTEM_INCIDENT": "Incident",
 
-  "NAV.DECO": "Déconnexion",
 
   "USER_PROFILE.TITLE": "Mon Profil",
   "USER_PROFILE.DESCRIPTION": "Gérez vos informations personnelles et vos préférences",
   "USER_PROFILE.INFORMATIONS": "Informations de base",
   "USER_PROFILE.AVATAR_URL": "Changer l’avatar",
   "USER_PROFILE.RESET": "Réinitialiser",
+  "ARIA.LABEL.USER_PROFILE.RESET": "Réinitialiser l'avatar",
+
   "USER_PROFILE.FIRSTNAME": "Prénom",
   "USER_PROFILE.LASTNAME": "Nom",
   "USER_PROFILE.CANCEL": "Annuler",
+  "ARIA.LABEL.USER_PROFILE.CANCEL": "Annuler les modifications",
   "USER_PROFILE.ACCOUNT": "Compte",
   "USER_PROFILE.EMAIL": "Email",
   "USER_PROFILE.TEMPORARY_MODIFICATION_EMAIL": "La modification de l’email sera gérée ultérieurement.",
@@ -133,6 +139,7 @@
   "USER_PROFILE.DELETE_ACCOUNT_MESSAGE": "Supprimer votre compte est irréversible.",
   "USER_PROFILE.DELETE_ACCOUNT": "Supprimer mon compte (désactivé)",
   "USER_PROFILE.SAVING": "Enregistrement…",
-  "USER_PROFILE.SAVE": "Enregistrer"
+  "USER_PROFILE.SAVE": "Enregistrer",
+  "ARIA.LABEL.USER_PROFILE.SAVE": "Enregistrer les modifications"
 
 }
