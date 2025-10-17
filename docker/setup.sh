@@ -21,18 +21,18 @@ if [ ! -d "/git/Hackathon-Groupe-6" ]; then
 else
   echo "🔁 Le dépôt existe déjà, mise à jour..."
   cd Hackathon-Groupe-6
-  git pull origin dev
+  git pull
   cd ..
 fi
 
 echo "📦 Copie du dossier API vers /api..."
-rsync -a --delete /git/Hackathon-Groupe-6/api/ /api/
+cp -r /git/Hackathon-Groupe-6/api/ /api
 
 cd /api
 chmod +x mvnw || true
 
 echo "[4/5] Compilation de l’API Spring Boot..."
-./mvnw clean package -DskipTests
+mvnw clean package -DskipTests
 
 # --- 4️⃣ Déploiement des conteneurs Docker ---
 echo "[5/5] Déploiement du stack Docker (MariaDB, phpMyAdmin, nginx)..."
