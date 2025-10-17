@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {AuthService} from '../service/auth.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class Login {
   submitting = false;
   serverMessage: string | null = null;
   serverError: string | null = null;
+  private apiUrl = environment.apiUrl + '/auth';
 
   onSubmit(form: NgForm) {
     if (form.invalid) return;
@@ -35,7 +37,7 @@ export class Login {
     this.serverMessage = null;
     this.serverError = null;
 
-    this.http.post<{ token: string, userId: string }>('http://localhost:8080/api/auth/login', payload)
+    this.http.post<{ token: string, userId: string }>(`${this.apiUrl}/login`, payload)
       .subscribe({
         next: (res) => {
           // ✅ Stocke le JWT dans le localStorage

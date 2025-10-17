@@ -22,6 +22,8 @@ export class UserProfile implements OnInit {
     mail: '',
     name: '',
     surname: '',
+    role: '',
+    passwordUser: '',
     profileImageUrl: 'assets/images/default-avatar.jpg'
   };
 
