@@ -1,9 +1,8 @@
 # Hackathon - Ynov Toulouse 2025 : Babyfoot du futur - Cloud & Infrastructure
 
 ## Equipe
-
-- Cloud & Infra 1 : BARREDA Clement
-- Cloud & Infra : SAID YSSOUFA Michael
+- Cloud & Infra : BARREDA Clément
+- Cloud & Infra : SAIDYOUSSOUFA Michael
 - Cloud & Infra : ESCOFFIER Alexandre
 
 Et si on réinventait l’expérience babyfoot à Ynov ? L’objectif de ce hackathon est de moderniser et digitaliser l’usage des babyfoots présents dans le Souk pour créer un service _next-gen_, pensé pour près de 1000 étudiants !

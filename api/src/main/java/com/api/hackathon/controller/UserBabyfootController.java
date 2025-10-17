@@ -1,15 +1,23 @@
 package com.api.hackathon.controller;
 
 import com.api.hackathon.model.UserBabyfoot;
+import com.api.hackathon.repository.BookingRepository;
+import com.api.hackathon.repository.TournamentRepository;
 import com.api.hackathon.repository.UserBabyfootRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -22,9 +30,17 @@ import java.util.Optional;
 public class UserBabyfootController {
 
     private final UserBabyfootRepository userRepository;
+    private final TournamentRepository tournamentRepository;
+    private final BookingRepository bookingRepository;
 
-    public UserBabyfootController(UserBabyfootRepository userRepository) {
+    public UserBabyfootController(
+            UserBabyfootRepository userRepository,
+            TournamentRepository tournamentRepository,
+            BookingRepository bookingRepository
+    ) {
         this.userRepository = userRepository;
+        this.tournamentRepository = tournamentRepository;
+        this.bookingRepository = bookingRepository;
     }
 
     // 🔹 GET - Récupérer tous les utilisateurs
@@ -32,8 +48,20 @@ public class UserBabyfootController {
     @ApiResponse(responseCode = "200", description = "OK")
 
     @GetMapping
-    public List<UserBabyfoot> getAllUsers() {
-        return userRepository.findAll();
+    public ResponseEntity<Map<String, Object>> getAllUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        Pageable paging = PageRequest.of(page, size);
+        Page<UserBabyfoot> pageUsers = userRepository.findAll(paging);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("users", pageUsers.getContent());
+        response.put("currentPage", pageUsers.getNumber());
+        response.put("totalItems", pageUsers.getTotalElements());
+        response.put("totalPages", pageUsers.getTotalPages());
+
+        return ResponseEntity.ok(response);
     }
 
     // 🔹 GET - Récupérer un utilisateur par ID
@@ -94,16 +122,27 @@ public class UserBabyfootController {
 
 
 
-    // 🔹 DELETE - Supprimer un utilisateur
-    @Operation(summary = "Supprimer /{id}")
-    @ApiResponse(responseCode = "204", description = "Supprimé")
-
+    @Operation(summary = "Supprimer un utilisateur et ses données associées")
+    @ApiResponse(responseCode = "204", description = "Utilisateur, tournois et réservations supprimés")
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
-        if (!userRepository.existsById(id)) {
+        Optional<UserBabyfoot> userOpt = userRepository.findById(id);
+        if (userOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        userRepository.deleteById(id);
+
+        UserBabyfoot user = userOpt.get();
+
+        // 🔹 Étape 1 : supprimer les réservations associées
+        bookingRepository.deleteAllByUser(user);
+
+        // 🔹 Étape 2 : supprimer les tournois associés
+        tournamentRepository.deleteAllByUser(user);
+
+        // 🔹 Étape 3 : supprimer l'utilisateur
+        userRepository.delete(user);
+
         return ResponseEntity.noContent().build();
     }
 }

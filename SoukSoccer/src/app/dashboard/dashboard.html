@@ -120,14 +120,11 @@
         <div class="card-body p-4">
           <div class="d-flex align-items-center mb-3">
             <h2 class="h6 fw-bold mb-0">{{ 'DASHBOARD.USERS_TITLE' | translate }}</h2>
-
             <div class="ms-auto d-flex align-items-center gap-2">
               <div class="searchbox position-relative">
                 <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-2 text-muted"></i>
-                <input
-                  type="text"
-                  class="form-control ps-5 rounded-3"
-                  [placeholder]="'DASHBOARD.USERS_SEARCH_PLACEHOLDER' | translate" />
+                <input type="text" class="form-control ps-5 rounded-3"
+                       [placeholder]="'DASHBOARD.USERS_SEARCH_PLACEHOLDER' | translate" />
               </div>
               <button class="btn btn-primary btn-sm rounded-3" (click)="inviteUser()">
                 <i class="bi bi-person-plus me-1"></i> {{ 'DASHBOARD.USERS_INVITE' | translate }}
@@ -135,35 +132,51 @@
             </div>
           </div>
 
-          <div class="vstack gap-2">
+          <!-- Chargement -->
+          <div *ngIf="isLoading()">Chargement...</div>
+          <div *ngIf="error()" class="text-danger small">{{ error() }}</div>
+
+          <!-- Liste -->
+          <div class="vstack gap-2" *ngIf="!isLoading() && !error()">
             @for (u of users(); track u.id) {
               <div class="user-row border rounded-4 bg-white p-3 d-flex align-items-center">
+                <p class="d-none">{{ u.id }}</p>
                 <img [src]="u.avatarUrl" [alt]="u.name" class="rounded-circle me-3" width="44" height="44">
                 <div class="flex-grow-1">
-                  <div class="d-flex align-items-center gap-2">
-                    <div class="fw-semibold">{{ u.name }}</div>
-                    <!-- Si tu passes les rôles en clés: {{ ('DASHBOARD.USERS_ROLE_' + u.roleKey) | translate }} -->
-                    <span class="badge bg-secondary-subtle text-secondary rounded-pill small">{{ u.role }}</span>
-                    @if (u.online) {
-                      <span class="badge bg-success-subtle text-success rounded-pill small">
-                        {{ 'DASHBOARD.USERS_ONLINE' | translate }}
-                      </span>
-                    }
-                  </div>
+                  <div class="fw-semibold">{{ u.name }}</div>
                   <div class="text-muted small">{{ u.email }}</div>
                 </div>
-                <div class="small text-muted">{{ u.lastActive || ('DASHBOARD.STATUS_ACTIVE' | translate) }}</div>
+
+                <!-- 🗑️ Bouton supprimer -->
+                <button class="btn btn-light border rounded-3 ms-3"
+                        title="Supprimer cet utilisateur"
+                        (click)="deleteUser(u)">
+                  <i class="bi bi-trash text-danger"></i>
+                </button>
               </div>
             }
           </div>
+          <!-- Pagination -->
+          <nav class="mt-3" *ngIf="totalPages() > 1">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item" [class.disabled]="page() === 0">
+                <button class="page-link" (click)="prevPage()">‹</button>
+              </li>
 
-          <a href="#" class="d-block text-center mt-3 text-primary text-decoration-none" (click)="openUsers()">
-            {{ 'DASHBOARD.USERS_SEE_ALL' | translate }}
-          </a>
+              <li class="page-item disabled">
+                <span class="page-link">{{ page() + 1 }} / {{ totalPages() }}</span>
+              </li>
+
+              <li class="page-item" [class.disabled]="page() + 1 >= totalPages()">
+                <button class="page-link" (click)="nextPage()">›</button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
-    </div>
 
+
+    </div>
     <!-- ===== Colonne droite ===== -->
     <div class="col-lg-4">
       <!-- Actions rapides -->
@@ -234,10 +247,8 @@
               </div>
             }
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 </div>
