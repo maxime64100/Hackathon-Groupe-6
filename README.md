@@ -131,6 +131,12 @@ Exemple de lancement en **une seule commande**:
 
 > /!\ IMPORTANT /!\ : Votre projet sera déployé sur une machine **LINUX** (Debian/Ubuntu), avec 4Go de RAM et 2 CPU (x86_64). Assurez-vous que votre application peut fonctionner dans ces conditions. Il n'y aura pas de "Ca marche sur mon Mac." ou encore "Si on alligne les astres sur Windows XP ça passe.".
 
+
+Dans le dossier Docker se trouve le fichier **install.sh**, ce script correspond à notre approche du one command install.
+En théorie, il doit installer toutes les dépendences, créer toute l'arborescene de fichiers, cloner le GitHub, installer l'API, les Dockers et, il aurait pu aussi compiler le front-end.
+
+Dans la pratique, il parvient à installer toutes les dépendances, télécharger, configurer et déployer tous les conteneurs, mais il bute sur la partie API (back-end) avec Maven, java, Angular. C'est la partie qui nous à donné le plus de mal, qui a fonctionné sur le Raspberry Pi5 après une matinée entière à cherher comment y parvenir, mais qui n'arrive pas à fonctionner avec le script. Plus de temps aurait été nécessaire pour réellement éprouver ce programm, identifier tous les bugs, les corriger, et rendre ce projet vraiment installable en une seule commande.
+
 ## Etat des lieux
 
 > Section d'honnêteté, décrivez ce qui n'a pas été fait, ce qui aurait pu être amélioré, les limitations de votre solution actuelle. Montrez que vous avez une vision critique de votre travail, de ce qui a été accompli durant ces deux demi-journées.
