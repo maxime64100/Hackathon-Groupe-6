@@ -274,13 +274,9 @@ La **méthodologie de nettoyage stricte** adoptée garantit la **fiabilité des 
 
 Les **visuels Power BI** créés permettent une **analyse interactive et complète** des performances des joueurs, de l'influence du choix de camp, et de l'utilisation des équipements.
 
-L'**intégration web** avec Angular démontre la capacité à créer des solutions **temps réel** pour les utilisateurs finaux, combinant analyse de données et développement web moderne.
+
 
 ---
 
 
-**⭐ Si ce projet vous plaît, n'hésitez pas à lui donner une étoile ! ⭐**
 
-Made with 🏓 by Ynov IA & Data Team
-
-</div>
