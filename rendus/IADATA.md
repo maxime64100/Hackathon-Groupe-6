@@ -1,7 +1,7 @@
 # 🏆 Babyfoot Analytics - Hackathon Ynov 2025
 
 
-> **Analyse avancée des performances des joueurs de babyfoot avec nettoyage de données, visualisations Power BI et intégration web temps réel.**
+> **Analyse des performances des joueurs de babyfoot avec nettoyage de données, visualisations Power BI et intégration web temps réel.**
 
 ---
 
