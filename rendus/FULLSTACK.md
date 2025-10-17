@@ -69,3 +69,6 @@ Ce travail m'a permis de mettre en place une stack FullStack complète, de l'API
 
 ### Fallek Maxime
 C'est la première fois pour ma part que j'utilisais Angular (et 2ème fois pour SpringBoot donc peu de base). Cela m'a permis de monter en compétence et d'apprendre un nouveau langage. J'ai réalisé des interfaces en front, le branchement entre le front et le back de la création de réservations et la liste des babyfoots et j'ai également intégré le chatbot ce qui était une première pour moi.
+
+### Raphaël Queron
+Ce projet bien qu'intense m'a permis de monter en compétences techniques pour ma part. Je suis la personne qui avait principalement la charge de m'occuper de la partie Backend de l'application, donc j'ai pu revoir des notions que j'avais oubliés (comme JWT) mais aussi apprendre de nouvelles choses commme la documentation avec swagger.
