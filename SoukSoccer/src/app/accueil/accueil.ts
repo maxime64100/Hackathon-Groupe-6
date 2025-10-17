@@ -1,6 +1,10 @@
-import {Component, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TranslatePipe} from '@ngx-translate/core';
+import { Component, signal, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
+import { ChatService } from '../service/chat.service'; // adapte le chemin si besoin
+import { ChatMessage } from '../chatbot/chat';
+import { BABYFOOT_SYSTEM_PROMPT } from '../chatbot/system-prompt';
 
 interface StatCard {
   icon: string;       // classe bootstrap-icons
@@ -35,7 +39,7 @@ interface TopPlayer {
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, TranslatePipe, FormsModule],
   templateUrl: './accueil.html',
   styleUrls: ['./accueil.css']
 })
@@ -81,4 +85,36 @@ export class Accueil {
     { rank: 2, name: 'Maxime F.',     wins: 112, points: 2180, avatar: 'https://i.pravatar.cc/48?img=12' },
     { rank: 3, name: 'Raphaël Q.',    wins: 98,  points: 2050, avatar: 'https://i.pravatar.cc/48?img=22' },
   ]);
+
+  // ====== CHATBOT (AJOUT) ======
+  private chat = inject(ChatService);
+
+  openChat = signal(false);
+  draft = '';
+  loading = signal(false);
+  history = signal<ChatMessage[]>([
+    { role: 'system', content: BABYFOOT_SYSTEM_PROMPT }
+  ]);
+
+  toggleChat() { this.openChat.set(!this.openChat()); }
+
+  send() {
+    const text = this.draft.trim();
+    if (!text || this.loading()) return;
+
+    this.history.update(h => [...h, { role: 'user', content: text }]);
+    this.draft = '';
+    this.loading.set(true);
+
+    this.chat.send(this.history()).subscribe({
+      next: reply => {
+        this.history.update(h => [...h, { role: 'assistant', content: reply }]);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.history.update(h => [...h, { role: 'assistant', content: "Oups… le coach est indisponible pour le moment." }]);
+        this.loading.set(false);
+      }
+    });
+  }
 }
