@@ -82,15 +82,24 @@ public class RepairsController {
             if (r.getEndDateRepairs().isBefore(r.getStartDateRepairs())) {
                 return ResponseEntity.badRequest().body("endDateRepairs must be after startDateRepairs");
             }
+
             Repairs updated = service.update(id, r);
             return ResponseEntity.ok(updated);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
+        }
+        catch (RuntimeException e) {
+            String msg = e.getMessage() != null ? e.getMessage().toLowerCase() : "";
+            if (msg.contains("not found")) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            }
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Unexpected error: " + e.getMessage());
+        }
+        catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error updating repairs: " + e.getMessage());
         }
-    }    @Operation(summary = "Supprimer /{id}")
+    }
+    @Operation(summary = "Supprimer /{id}")
     @ApiResponse(responseCode = "204", description = "Supprimé")
 
 

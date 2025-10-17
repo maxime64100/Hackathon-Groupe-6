@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
             - Les utilisateurs (inscription, rôles, authentification)
             - Les babyfoots disponibles
             - Les réservations
+            - les tournois 
             
             Projet réalisé lors du Hackathon Ynov Toulouse 2025.
             """
