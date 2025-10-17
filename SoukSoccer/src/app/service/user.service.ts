@@ -1,7 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import {Injectable, inject, Inject, PLATFORM_ID} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service'; // <== importe ton AuthService
+import { AuthService } from './auth.service';
+import {isPlatformBrowser} from '@angular/common';
+import {environment} from '../../environments/environment'; // <== importe ton AuthService
 
 export interface UserBabyfoot {
   idUser: number;
@@ -21,12 +23,22 @@ export interface PaginatedUsers {
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private http = inject(HttpClient);
-  private authService = inject(AuthService); // <== injecte AuthService
-  private apiUrl = 'http://localhost:8080/api/users';
+  private authService = inject(AuthService);
+  private apiUrl = environment.apiUrl + '/users';
+  private isBrowser: boolean;
 
-  /** ✅ Ajoute automatiquement le token dans le header */
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  /** ✅ Ajoute automatiquement le token dans le header (uniquement côté navigateur) */
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
+    let token = '';
+
+    if (this.isBrowser) {
+      token = localStorage.getItem('token') ?? '';
+    }
+
     return new HttpHeaders({
       'Authorization': token ? `Bearer ${token}` : ''
     });
@@ -54,3 +66,4 @@ export class UserService {
     return this.http.put<UserBabyfoot>(`${this.apiUrl}/${id}`, user, { headers });
   }
 }
+
