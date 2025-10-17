@@ -12,7 +12,7 @@
 
 ---
 
-## 📊 Vue d'ensemble du projet
+##  Vue d'ensemble du projet
 
 ### Objectifs analytiques
 
@@ -32,7 +32,7 @@ Ce projet analyse les performances des joueurs de babyfoot à travers **trois ax
 
 ---
 
-## 🧹 Nettoyage des données
+##  Nettoyage des données
 
 ### État initial du dataset
 
@@ -232,7 +232,7 @@ DIVIDE(
 
 
 
-## 🌐 Intégration Web (Bonus IA)
+## Intégration Web (Bonus IA)
 
 ### Composant Angular - Top 10 Buteurs
 
@@ -252,49 +252,9 @@ Développement d'un **composant Angular standalone** pour afficher le Top 10 but
 ✅ **Responsive** (mobile-first)    
 ✅ **Prêt pour API REST** (connexion backend)
 
-#### Structure des fichiers
 
-```
-src/
-├── top10-scorers.component.ts    # Logique TypeScript
-├── top10-scorers.component.html  # Template Bootstrap
-├── top10-scorers.component.css   # Styles personnalisés
-└── main.ts                       # Bootstrap Angular
-```
 
-### Architecture système (Solution Hybrid)
-
-```
-┌──────────────┐
-│  CSV nettoyé │ (Power Query)
-└──────┬───────┘
-       │
-       ↓
-┌──────────────┐
-│ Base de      │ (PostgreSQL/MongoDB)
-│ données      │
-└──────┬───────┘
-       │
-   ┌───┴────┐
-   │        │
-   ↓        ↓
-┌──────┐ ┌────────┐
-│ API  │ │ Power  │
-│ REST │ │ BI     │
-└───┬──┘ └────────┘
-    │
-    ↓
-┌──────────────┐
-│ Site Web     │
-│ (Angular)    │
-│ - KPIs live  │
-│ - iframe PBI │
-└──────────────┘
-```
-
----
-
-## 📊 Résultats & Insights clés
+##  Résultats 
 
 ### Qualité des données
 
@@ -306,8 +266,7 @@ src/
 
 
 
-
-## 🎯 Conclusion
+##  Conclusion
 
 Ce projet a permis de **transformer un dataset brut** de 100k lignes avec de nombreux problèmes de qualité en une **base de données exploitable** de 60k lignes, permettant de répondre aux trois questions analytiques posées.
 
