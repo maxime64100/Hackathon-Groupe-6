@@ -1,5 +1,5 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, distinctUntilChanged, map} from 'rxjs';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -50,6 +50,33 @@ export class AuthService {
       return false;
     }
   }
+
+  /**
+   * Renvoie l'ID utilisateur courant (number) en priorité depuis le token
+   */
+  getUserId(): number | null {
+    const decoded = this.getUserInfo();
+    const fromCustom = (decoded as any)?.idUser;
+    if (typeof fromCustom === 'number') return fromCustom;
+
+    if (decoded?.sub) {
+      const n = Number(decoded.sub);
+      if (!Number.isNaN(n)) return n;
+    }
+
+    if (this.isBrowser) {
+      const raw = localStorage.getItem('userId');
+      const n = raw ? Number(raw) : NaN;
+      if (!Number.isNaN(n)) return n;
+    }
+
+    return null;
+  }
+
+  currentUserId$ = this.userInfo$.pipe(
+    map(() => this.getUserId()),
+    distinctUntilChanged()
+  );
 
   /** ✅ Décode le token pour récupérer les infos utilisateur */
   getUserInfo(): DecodedToken | null {
