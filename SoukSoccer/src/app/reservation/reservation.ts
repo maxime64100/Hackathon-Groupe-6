@@ -1,10 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { BookingService, CreateBookingDto } from '../service/reservation.service';
 import { AuthService } from '../service/auth.service';
-
-type Role = 'user' | 'admin';
+import { BookingService, CreateBookingDto } from '../service/reservation.service';
+import { BabyfootService, ApiBabyfoot } from '../babyfoot/babyfoot.service';
 
 interface Day {
   label: string;
@@ -12,39 +11,33 @@ interface Day {
   dayNum: number;
   isSelected: boolean;
 }
+
 interface TimeSlot {
   label: string;
   durationMin: number;
   disabled?: boolean;
   occupied?: boolean;
 }
-interface TableStatus {
-  color: 'green' | 'red' | 'gray';
-  text: string;
-}
-interface BabyfootTable {
-  id: number;
-  name: string;
-  zone: string;
-  status: TableStatus;
-  disabled?: boolean;
-}
+
 interface QuickStats {
   available: number;
   total: number;
   avgWaitMin: number;
   gamesToday: number;
 }
+
 interface MyReservationItem {
   when: 'Aujourd’hui' | 'Demain' | 'Autre';
   tableName: string;
   time: string;
   status: 'Actif' | 'Planifié';
 }
+
 interface PopularHour {
   range: string;
   level: 'high' | 'medium' | 'low';
 }
+
 interface Player {
   id: number;
   name: string;
@@ -58,9 +51,10 @@ interface Player {
   templateUrl: './reservation.html',
   styleUrls: ['./reservation.css']
 })
-export class Reservation {
+export class Reservation implements OnInit {
   private auth = inject(AuthService);
   private bookingService = inject(BookingService);
+  private babyfootService = inject(BabyfootService);
 
   days = signal<Day[]>(this.buildWeek(new Date()));
   selectedDay = signal<Day>(this.days()[2] ?? this.days()[0]);
@@ -75,17 +69,10 @@ export class Reservation {
     { label: '11:00', durationMin: 30 },
     { label: '11:30', durationMin: 30 },
   ]);
-  selectedSlot = signal<TimeSlot | null>(this.timeSlots()[2]);
+  selectedSlot = signal<TimeSlot | null>(this.timeSlots()[2]); // 09:00
 
-  role: Role = 'user';
-
-  tables = signal<BabyfootTable[]>([
-    { id: 1, name: 'Babyfoot #1', zone: 'Zone principale', status: { color: 'green', text: 'OK' } },
-    { id: 3, name: 'Babyfoot #3', zone: 'Zone détente',   status: { color: 'green', text: 'OK' } },
-    { id: 5, name: 'Babyfoot #5', zone: 'Zone calme',      status: { color: 'green', text: 'OK' } },
-    { id: 7, name: 'Babyfoot #7', zone: 'Maintenance',     status: { color: 'gray',  text: 'Maintenance' }, disabled: true },
-  ]);
-  selectedTable = signal<BabyfootTable | null>(this.tables()[1]);
+  babyfoots = signal<ApiBabyfoot[]>([]);
+  selectedBabyfoot = signal<ApiBabyfoot | null>(null);
 
   players = signal<Player[]>([
     { id: 1, name: 'Vous', avatarUrl: 'https://i.pravatar.cc/48?img=5' },
@@ -106,7 +93,23 @@ export class Reservation {
     { range: '08:00 - 10:00', level: 'low' },
   ]);
 
-  // ======= ACTIONS =======
+  // ======= Lifecycle =======
+  ngOnInit(): void {
+    this.loadBabyfoots();
+  }
+
+  private loadBabyfoots() {
+    this.babyfootService.getAll().subscribe({
+      next: (list) => {
+        this.babyfoots.set(list);
+        this.selectedBabyfoot.set(list[0] ?? null);
+      },
+      error: (err) => {
+        console.error('Erreur chargement babyfoots', err);
+      }
+    });
+  }
+
   selectDay(day: Day) {
     this.days.update(list => list.map(d => ({ ...d, isSelected: d === day })));
     this.selectedDay.set(day);
@@ -117,9 +120,8 @@ export class Reservation {
     this.selectedSlot.set(slot);
   }
 
-  selectTable(t: BabyfootTable) {
-    if (t.disabled) return;
-    this.selectedTable.set(t);
+  selectBabyfoot(b: ApiBabyfoot) {
+    this.selectedBabyfoot.set(b);
   }
 
   addPlayer() {
@@ -134,33 +136,35 @@ export class Reservation {
   }
 
   confirmReservation() {
-    if (!this.selectedDay() || !this.selectedSlot() || !this.selectedTable()) {
+    const chosenDay = this.selectedDay();
+    const chosenSlot = this.selectedSlot();
+    const chosenBaby = this.selectedBabyfoot();
+
+    if (!chosenDay || !chosenSlot || !chosenBaby) {
       alert('Sélectionne une date, un créneau et une table 👍');
       return;
     }
 
-
-    const currentUserId = this.auth.getUserId();  // <-- récupère depuis le JWT / localStorage
+    const currentUserId = this.auth.getUserId();
     if (!currentUserId) {
       alert('Tu dois être connecté pour réserver.');
       return;
-    }    const babyfootId = this.selectedTable()!.id;
+    }
 
     const payload: CreateBookingDto = {
       statutBooking: 'ACCEPTEE',
-      dateBooking: this.toLocalIso(this.selectedDay().date, this.selectedSlot()!.label),
+      dateBooking: this.toLocalIso(chosenDay.date, chosenSlot.label),
       user: { idUser: currentUserId },
-      babyfoot: { idBabyfoot: babyfootId }
+      babyfoot: { idBabyfoot: chosenBaby.idBabyfoot }
     };
 
     this.bookingService.create(payload).subscribe({
       next: (created) => {
-        alert(`✅ Réservation créée (#${created.idBooking}) le ${this.formatDate(this.selectedDay().date)} à ${this.selectedSlot()!.label}`);
+        alert(`✅ Réservation créée (#${created.idBooking}) le ${this.formatDate(chosenDay.date)} à ${chosenSlot.label}`);
       },
       error: (err) => {
-        // Log complet pour debug
         console.error('Booking create error =>', err);
-        const backendMsg = err?.error?.error;         // ton contrôleur renvoie { error: "..." }
+        const backendMsg = err?.error?.error;
         const httpMsg    = err?.message || 'HTTP error';
         const finalMsg   = backendMsg || httpMsg || 'Une erreur est survenue';
         alert(`❌ ${finalMsg}`);
@@ -168,22 +172,15 @@ export class Reservation {
     });
   }
 
-  /** Construit "YYYY-MM-DDTHH:mm:00" (sans timezone) — idéal pour Spring LocalDateTime */
+  /** "YYYY-MM-DDTHH:mm:00" (sans timezone) — compatible Spring LocalDateTime */
   private toLocalIso(date: Date, timeLabel: string): string {
     const [h, m] = timeLabel.split(':').map(Number);
     const d = new Date(date);
     d.setHours(h, m, 0, 0);
-
     const pad = (n: number) => String(n).padStart(2, '0');
-    const y = d.getFullYear();
-    const mo = pad(d.getMonth() + 1);
-    const da = pad(d.getDate());
-    const ho = pad(d.getHours());
-    const mi = pad(d.getMinutes());
-    return `${y}-${mo}-${da}T${ho}:${mi}:00`;
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00`;
   }
 
-  // ======= HELPERS =======
   private buildWeek(reference: Date): Day[] {
     const base = new Date(reference);
     const dow = (base.getDay() + 6) % 7; // 0=lundi
