@@ -83,3 +83,7 @@ Nous avons également découvert les contraintes réelles du **fullstack** (int�
 ### 📝 Retours d'expérience
 
 **Clément :** j'ai particulièrement apprécié travailler sur ce projet. Le début était assez compliquer, sans cadre clair ni consignes précises (volontairement), j'étais un peu perdu et je ne savais pas par ou commencer. Il nous fallait bâtir une infra complète, mais avec quoi ? Quelle technologie ? Quel matériel ? tout ça était à définir. Après avoir échangé avec Michael et Alexandre, nous avons décidé de partir donc sur une infrastructure principalement Docker. La suite a été bien plus plaisante, mettre en place tout ce que nous avons immaginé, et voir petit à petit le tout fonctionner est une vraie satisfaction. De voir aussi que le travail de nos camarades fullstack et IA/Data fonctionnait sur notre infra est, je trouve, une vraie réussite. Je ressors de ce projet satisfait de nous, content d'avoir pu y participer, et enthousiaste pour la suite.
+
+**Michael :**
+
+**Alexandre :**
