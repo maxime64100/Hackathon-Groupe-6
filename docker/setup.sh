@@ -6,7 +6,8 @@ echo "=== 🚀 Initialisation du Raspberry Pi ==="
 # --- 1️⃣ Installation des paquets essentiels ---
 echo "[1/5] Installation des dépendances..."
 sudo apt update
-sudo apt install -y git curl default-jdk docker.io docker-compose
+sudo apt install -y git curl default-jdk docker.io docker-compose npm maven
+sudo npm install -g @angular/cli
 
 # --- 2️⃣ Création de l’arborescence ---
 echo "[2/5] Création des répertoires..."
@@ -26,16 +27,14 @@ else
 fi
 
 echo "📦 Copie du dossier API vers /api..."
-cp -r /git/Hackathon-Groupe-6/api/ /api
+cp -r /git/Hackathon-Groupe-6/api/. /api
 
 cd /api
 chmod +x mvnw || true
 
-echo "[4/5] Compilation de l’API Spring Boot..."
-mvnw clean package -DskipTests
 
 # --- 4️⃣ Déploiement des conteneurs Docker ---
-echo "[5/5] Déploiement du stack Docker (MariaDB, phpMyAdmin, nginx)..."
+echo "[4/5] Déploiement du stack Docker (MariaDB, phpMyAdmin, nginx)..."
 
 cat > /docker/docker-compose.yml <<'EOF'
 version: '3.8'
@@ -94,6 +93,7 @@ services:
       - "9000:9000"
     volumes:
       - /docker/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - hackathon_net
 
@@ -102,6 +102,10 @@ networks:
 EOF
 
 sudo docker-compose -f /docker/docker-compose.yml up -d
+
+echo "[5/5] Compilation de l’API Spring Boot..."
+./mvnw clean package -DskipTests
+
 
 # --- 5️⃣ Création du service systemd pour l’API ---
 echo "🛠️  Création du service systemd hackathon-api..."
