@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import {isPlatformBrowser} from '@angular/common';
-import {environment} from '../../environments/environment'; // <== importe ton AuthService
+import {environment} from '../../environments/environment';
 
 export interface UserBabyfoot {
   idUser: number;
@@ -27,7 +27,7 @@ export interface PaginatedUsers {
 export class UserService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'http://localhost:8080/api/users';
   private isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
