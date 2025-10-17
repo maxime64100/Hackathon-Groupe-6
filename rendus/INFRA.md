@@ -1,7 +1,6 @@
 # Hackathon - Ynov Toulouse 2025 : Babyfoot du futur - Cloud & Infrastructure
 
 ## Equipe
-
 - Cloud & Infra : BARREDA Clément
 - Cloud & Infra : SAIDYOUSSOUFA Michael
 - Cloud & Infra : ESCOFFIER Alexandre

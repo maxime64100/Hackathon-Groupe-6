@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Header } from './header/header';
+import {LanguageService} from './service/language.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
+  standalone: true,
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('SoukSoccer');
+  // ✅ juste une référence
+  langService = inject(LanguageService);
 }
