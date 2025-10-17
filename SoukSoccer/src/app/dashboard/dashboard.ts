@@ -178,8 +178,46 @@ export class Dashboard implements OnInit {
   }
   viewTable(t: TableItem) { alert('TODO Détails ' + t.name); }
 
-  inviteUser() { alert('TODO Inviter'); }
-  openUsers() { alert('TODO Voir tous les utilisateurs'); }
+  inviteUser() {
+    const name = prompt("Prénom de l'utilisateur ?");
+    if (!name) return;
+
+    const surname = prompt("Nom de l'utilisateur ?");
+    if (!surname) return;
+
+    const mail = prompt("Adresse e-mail ?");
+    if (!mail) return;
+
+    const role = prompt("Rôle (ADMIN ou USER) ?", "USER");
+    if (!role) return;
+
+    const passwordUser = prompt("Mot de passe temporaire ?");
+    if (!passwordUser) return;
+
+    const newUser: Partial<UserBabyfoot> = {
+      name,
+      surname,
+      mail,
+      passwordUser,
+      role,
+    };
+
+    this.userService.createUser(newUser).subscribe({
+      next: (message: any) => {
+        alert(`✅ Utilisateur créé avec succès : ${message}`);
+        location.reload();
+      },
+      error: (err: any) => {
+        console.error('Erreur API:', err);
+        const msg =
+          err?.error && typeof err.error === 'string'
+            ? err.error
+            : "Erreur lors de la création de l'utilisateur ❌";
+        alert(msg);
+      },
+    });
+  }
+
 
   // ===== Helpers =====
   statusBadgeClass(s: TableItem['status']) {

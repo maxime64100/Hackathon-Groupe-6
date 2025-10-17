@@ -5,13 +5,17 @@ import com.api.hackathon.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Configuration
 public class DataInitializer {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public DataInitializer(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Bean
     CommandLineRunner initDatabase(
@@ -19,12 +23,12 @@ public class DataInitializer {
             BabyfootRepository babyfootRepo,
             BookingRepository bookingRepo,
             TournamentRepository tournamentRepo,
-            RepairsRepository repairsRepo,
-            PasswordEncoder passwordEncoder
+            RepairsRepository repairsRepo
     ) {
         return args -> {
             System.out.println("Réinitialisation des données de test...");
 
+            // On supprime les anciennes données sans dropper les tables
             bookingRepo.deleteAll();
             tournamentRepo.deleteAll();
             repairsRepo.deleteAll();
@@ -66,7 +70,7 @@ public class DataInitializer {
                     LocalDateTime.now().minusDays(3), baby2);
             repairsRepo.saveAll(List.of(rep1, rep2));
 
-            System.out.println("✅ Données de test insérées avec succès !");
+            System.out.println("Données de test insérées avec succès !");
         };
     }
 }
