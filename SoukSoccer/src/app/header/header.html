@@ -24,10 +24,10 @@
         <li class="nav-item me-4">
           <a href="/reservation" class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
         </li>
-        <li class="nav-item me-4">
+        <li class="nav-item me-4" >
           <a class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="userInfo?.profileImageUrl == 'ADMIN'">
           <a href="/dashboard" class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
         </li>
       </ul>

@@ -10,6 +10,8 @@ export interface UserBabyfoot {
   mail: string;
   name: string;
   surname: string;
+  role: string;
+  passwordUser: string;
   profileImageUrl?: string;
 }
 
@@ -66,4 +68,3 @@ export class UserService {
     return this.http.put<UserBabyfoot>(`${this.apiUrl}/${id}`, user, { headers });
   }
 }
-
