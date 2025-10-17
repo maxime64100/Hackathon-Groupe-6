@@ -18,13 +18,25 @@ export class Header implements OnInit {
   authService = inject(AuthService);
   userService = inject(UserService);
   router = inject(Router);
-  role: string | null = null;
 
   isAuthenticated = false;
   userInfo: UserBabyfoot | null = null;
 
   ngOnInit() {
-    console.log(this.userInfo?.role);
+    this.authService.isAuthenticated$.subscribe((auth) => {
+      this.isAuthenticated = auth;
+      if (auth) {
+        const idUser = Number(localStorage.getItem('userId'));
+        if (idUser) {
+          this.userService.getUserById(idUser).subscribe({
+            next: (user) => (this.userInfo = user),
+            error: () => (this.userInfo = null),
+          });
+        }
+      } else {
+        this.userInfo = null;
+      }
+    });
   }
 
   toggleLanguage() {

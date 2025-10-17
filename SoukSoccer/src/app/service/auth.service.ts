@@ -7,7 +7,6 @@ export interface DecodedToken extends JwtPayload {
   sub?: string;
   name?: string;
   surname?: string;
-  role?: string;
   mail?: string;
 }
 
@@ -31,11 +30,6 @@ export class AuthService {
       this.authState.next(hasToken);
       this.userInfoSubject.next(this.getUserInfo());
     }
-  }
-
-  getUserRole(): string | null {
-    const decoded = this.getUserInfo();
-    return decoded?.role || null;
   }
 
   /** ✅ Vérifie s’il y a un token valide */

@@ -18,16 +18,16 @@
     <!-- 🌐 NAVBAR DESKTOP -->
     <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item me-4">
+        <li class="nav-item me-4" *ngIf="userInfo?.role == 'USER' || 'ADMIN'">
           <a href="/" class="nav-link" aria-label="{{ 'ARIA.LABEL.HOME' | translate }}">{{ 'NAV.HOME' | translate }}</a>
         </li>
-        <li class="nav-item me-4">
+        <li class="nav-item me-4" *ngIf="userInfo?.role == 'USER' || 'ADMIN'">
           <a href="/reservation" class="nav-link" aria-label="{{ 'ARIA.LABEL.RESERVATION' | translate }}">{{ 'NAV.RESERVATION' | translate }}</a>
         </li>
-        <li class="nav-item me-4" >
+        <li class="nav-item me-4" *ngIf="userInfo?.role == 'USER' || 'ADMIN'">
           <a class="nav-link" aria-label="{{ 'ARIA.LABEL.TOURNAMENTS' | translate }}">{{ 'NAV.TOURNAMENTS' | translate }}</a>
         </li>
-        <li class="nav-item" *ngIf="userInfo?.profileImageUrl == 'ADMIN'">
+        <li class="nav-item" *ngIf="userInfo?.role == 'ADMIN'">
           <a href="/dashboard" class="nav-link" aria-label="{{ 'ARIA.LABEL.STATS' | translate }}">{{ 'NAV.STATS' | translate }}</a>
         </li>
       </ul>

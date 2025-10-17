@@ -5,7 +5,7 @@ import { UserService } from '../service/user.service';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class AdminGuard implements CanActivate {
+export class UserGuard implements CanActivate {
 
   constructor(
     private router: Router,
@@ -24,10 +24,11 @@ export class AdminGuard implements CanActivate {
     try {
       const user = await firstValueFrom(this.userService.getUserById(userId));
 
-      if (user.role === 'ADMIN') {
-        return true; // ✅ accès autorisé
+      if (user.role === 'USER' || 'ADMIN') {
+        // accès autorisé
+        return true;
       } else {
-        alert('Accès refusé : réservé aux administrateurs 🚫');
+        alert('Accès refusé : réservé aux utilisateurs 🚫');
         this.router.navigate(['/']);
         return false;
       }
