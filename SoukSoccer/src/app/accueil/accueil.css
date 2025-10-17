@@ -78,3 +78,52 @@
   .display-5{ font-size: 2rem; }
   .hero-sub{ font-size: .95rem; }
 }
+
+.chat-fab{
+  position: fixed;
+  right: 1.25rem; /* 20px */
+  bottom: 1.25rem;
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  z-index: 1040;
+  font-size: 1.25rem;
+}
+.chat-overlay{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 1040;
+}
+.chat-modal{
+  position: fixed;
+  right: 1rem; bottom: 1rem;
+  width: min(92vw, 420px);
+  max-height: 70vh;
+  display: flex; flex-direction: column;
+  border-radius: 16px;
+  z-index: 1041;
+  box-shadow: 0 16px 48px rgba(0,0,0,.25);
+}
+.chat-body{
+  overflow-y: auto;
+  max-height: calc(70vh - 110px);
+  padding: 1rem;
+  background: #fafafa;
+}
+.chat-bubble{
+  max-width: 85%;
+  padding: .5rem .75rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03);
+}
+.chat-bubble.user{
+  margin-left: auto;
+  background: #0d6efd; /* Bootstrap primary */
+  color: #fff; border-color: transparent;
+}
+.chat-bubble.assistant{
+  margin-right: auto;
+  background: #fff;
+}

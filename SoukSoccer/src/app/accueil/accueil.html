@@ -134,3 +134,39 @@
     <p>{{ "HOME.HERO_FOOTER.DESC" | translate}}</p>
   </div>
 </section>
+
+<button class="chat-fab btn btn-primary rounded-circle"
+        title="Coach Babyfoot"
+        (click)="toggleChat()">
+  💬
+</button>
+
+<div class="chat-overlay" *ngIf="openChat()" (click)="toggleChat()"></div>
+
+<div class="chat-modal card" *ngIf="openChat()" (click)="$event.stopPropagation()">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <div class="fw-semibold">Coach Babyfoot</div>
+    <button class="btn btn-sm btn-outline-secondary" (click)="toggleChat()">✕</button>
+  </div>
+
+  <div class="card-body chat-body">
+    <div class="vstack gap-2">
+      <ng-container *ngFor="let m of history(); let i = index">
+        <div class="chat-bubble"
+             [class.user]="m.role === 'user'"
+             [class.assistant]="m.role === 'assistant'"
+             *ngIf="m.role !== 'system'">
+          {{ m.content }}
+        </div>
+      </ng-container>
+      <div *ngIf="loading()" class="text-muted small">Le coach réfléchit…</div>
+    </div>
+  </div>
+
+  <form class="card-footer d-flex gap-2" (ngSubmit)="send()">
+    <input class="form-control" [(ngModel)]="draft" name="draft"
+           placeholder="Pose ta question sur le babyfoot…" required />
+    <button class="btn btn-primary" [disabled]="loading()">Envoyer</button>
+  </form>
+</div>
+
